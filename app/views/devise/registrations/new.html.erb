@@ -1,0 +1,39 @@
+<div class="maincontent">
+	<center><h2>Sign Up</h2></center>
+	<div style="margin: 0 auto; display: block; text-align: center;">
+		<hr id="contenttitlebar" />
+		<script type="text/javascript" language="javascript">
+		    function checktos()
+		    {
+		        if ($('input#contestant_remember_me').is(':checked')) {
+				    document.getElementById('signupbutton').disabled = false;
+				}
+				
+				else {
+				    document.getElementById('signupbutton').disabled = true;
+				}
+		    }
+		</script>
+		<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+		  <%= devise_error_messages! %>
+
+		  <div><%= f.label :email %><br />
+		  <%= f.email_field :email, autofocus: true %></div>
+
+		  <div><%= f.label :password %> <% if @validatable %><i>(<%= @minimum_password_length %> characters minimum)</i><% end %><br />
+		    <%= f.password_field :password, autocomplete: "off" %></div>
+
+		  <div><%= f.label :password_confirmation %><br />
+		    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+
+		 <br />
+		 <br />
+		<div><%= f.check_box :remember_me, onClick: "checktos();" %> I have read the rules and agree to the contest terms and conditions.</div>
+		 <br />
+
+		  <div><%= f.submit "Sign Up", disabled: true, class: "btn btn-primary btn-lg active btn-block", id: "signupbutton" %></div>
+		<% end %>
+
+		<%= render "devise/shared/links" %>
+	</div>
+</div>

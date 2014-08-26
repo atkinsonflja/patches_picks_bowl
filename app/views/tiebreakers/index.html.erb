@@ -1,0 +1,31 @@
+<h1>Listing tiebreakers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Home score</th>
+      <th>Away score</th>
+      <th>Game</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tiebreakers.each do |tiebreaker| %>
+      <tr>
+        <td><%= tiebreaker.user_id %></td>
+        <td><%= tiebreaker.home_score %></td>
+        <td><%= tiebreaker.away_score %></td>
+        <td><%= tiebreaker.game_id %></td>
+        <td><%= link_to 'Show', tiebreaker %></td>
+        <td><%= link_to 'Edit', edit_tiebreaker_path(tiebreaker) %></td>
+        <td><%= link_to 'Destroy', tiebreaker, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tiebreaker', new_tiebreaker_path %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @tiebreaker.user_id %>
+</p>
+
+<p>
+  <strong>Home score:</strong>
+  <%= @tiebreaker.home_score %>
+</p>
+
+<p>
+  <strong>Away score:</strong>
+  <%= @tiebreaker.away_score %>
+</p>
+
+<p>
+  <strong>Game:</strong>
+  <%= @tiebreaker.game_id %>
+</p>
+
+<%= link_to 'Edit', edit_tiebreaker_path(@tiebreaker) %> |
+<%= link_to 'Back', tiebreakers_path %>

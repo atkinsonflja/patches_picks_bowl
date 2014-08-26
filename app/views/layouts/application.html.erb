@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Patches Picks 2014</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body onload="noticealert();">
+	<script type="text/javascript" language="javascript">
+	    function noticealert()
+	    {
+	        $("#messages").fadeOut(6000);
+	    }
+	</script>
+<div id="mainbg">
+	<div id="wrapper">
+
+		<header>
+			<%= link_to_image("../../assets/logo.png", root_url) %>
+			<ul id="navlist">
+				<% if signed_in? %>
+				<li><%= link_to 'Log Out (' + current_contestant.email + ')', '/contestants/sign_out', :method => :delete %></li>
+				<li><%= link_to 'Edit Account', '/contestants/edit', :method => :get %></li>
+				<% else %>
+					<li><a href="/contestants/sign_in">Sign In/Register</a></li>
+				<% end %>
+				<li><a href="/rules">Rules</a></li>
+				<li><a href="/votes#index">Play Now</a></li>
+			</ul>
+			<div style="clear: both;">
+				&nbsp;
+			</div>
+			<h1 id="maintitle">Can you out pick TaxSlayer's Dynamic Duo?</h1>
+		</header>
+
+		<% if notice -%>
+		<div id="messages">
+			<p class="notice"><%= notice %></p>
+		</div>
+		<% end %>
+
+		<% if alert -%>
+		<div id="messages">
+			<p class="alert"><%= alert %></p>
+		</div>
+		<% end %>
+
+		<%= yield %>
+	</div>
+	<footer>
+		<p style="font-weight: bold; color: #FFFFFF; margin-bottom: -10px;">TOP PARTICIPANTS |</p>
+		<hr id="footerbar" />
+		<div id="footerlogos">
+			<div class="row">
+			  <div class="col-md-3" style="float: left;"><a href="http://www.taxslayerbowl.com/purchase-tickets/" target="_blank">TaxSlayerBowl.com<br />Purchase Tickets<a/></div>
+
+			  <div class="col-md-3" style="float: left;"><a href="http://taxslayerbowl.com/" target="_blank"><img style="margin: 0 auto; display: block; max-width: 200px;" src="../../assets/tslogofooter.png" alt="TaxSlayerBowl" width="100%" height="auto" \><a/></div>
+
+			  <div class="col-md-3" style="float: left;"><a href="http://www.jrmracing.com/" target="_blank"><img style="margin: 0 auto; display: block; max-width: 200px;" src="../../assets/jrlogo.png" alt="JR Motorsports" width="100%" height="auto" \><a/></div>
+
+			  <div class="col-md-3" style="float: left;"><a href="http://taxslayer.com/" target="_blank"><img style="margin: 0 auto; display: block; max-width: 200px;" src="../../assets/tslogo.png" alt="TaxSlayer.com" width="100%" height="auto" \><a/></div>
+
+			  <div class="col-md-3" style="float: left;">
+			  	<a class="socialcontainer" style="float: left;" href="https://www.facebook.com/taxslayerbowl" target="_blank"><img class="socialicon" style="margin: 0 auto; display: block; max-width: 32px;" src="../../assets/facebook.png" alt="TaxSlayer.com" width="100%" height="auto" \><a/>
+
+			  	<a class="socialcontainer" style="float: left;" href="https://twitter.com/taxslayerbowl" target="_blank"><img class="socialicon" style="margin: 0 auto; display: block; max-width: 32px;" src="../../assets/twitter.png" alt="TaxSlayer.com" width="100%" height="auto" \><a/>
+
+			  	<a class="socialcontainer" style="float: left;" href="http://instagram.com/taxslayerbowl" target="_blank"><img class="socialicon" style="margin: 0 auto; display: block; max-width: 32px;" src="../../assets/instagram.png" alt="TaxSlayer.com" width="100%" height="auto" \><a/>
+			  	</div>
+			</div>
+		</div>
+	</footer>
+</div>
+</body>
+</html>
