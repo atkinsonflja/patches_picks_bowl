@@ -10,7 +10,8 @@ class PlayController < ApplicationController
   # POST /play/vote
   def vote
     params[:games].each do |game_id, team_id|
-      vote = current_contestant.votes.find_or_initialize_by(:game_id => game_id, :team_id => team_id)
+      vote = current_contestant.votes.find_or_initialize_by(:game_id => game_id)
+      vote.team_id = team_id
       vote.save
     end
     redirect_to play_path, notice: "Your votes have been cast!"
