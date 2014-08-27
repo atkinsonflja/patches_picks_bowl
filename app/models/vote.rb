@@ -1,5 +1,5 @@
 class Vote < ActiveRecord::Base
-  belongs_to :contestant
+  belongs_to :contestant, :counter_cache => true
   belongs_to :game
   belongs_to :team
 

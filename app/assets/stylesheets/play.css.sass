@@ -1,0 +1,86 @@
+#voting
+  padding: 1%
+
+  h2
+    text-align: center
+
+  h2, span.week
+    font-size: 1.5em
+    text-transform: uppercase
+    font-weight: bold
+    line-height: 1.5em
+    margin: 5px 0
+
+  form
+    margin-bottom: 0
+
+  span.week
+    color: #999
+
+    a:link, a:visited
+      color: #000
+
+    &.next
+      float: right
+
+    &.prev
+      float: left
+
+  .submit
+    line-height: 4em
+
+    input[type=submit]
+      background-color: #C00
+      border-radius: 10px
+      color: white
+      font-size: 1.3em
+      padding: 0.5em
+      border: 0
+      text-transform: uppercase
+      font-weight: bold
+
+  table.games
+    width: 100%
+    line-height: 2em
+
+    td.vote
+      padding: 0 0.5em
+
+      input
+        margin-top: -0.5em
+
+    td.name
+      width: 100%
+      color: #666
+
+      label
+        font-weight: bold
+
+      &.home
+        text-align: left
+
+      &.away
+        text-align: right
+
+  h3
+    font-size: 1em
+    text-transform: uppercase
+    color: #666
+    line-height: 1.2
+
+#tiebreaker
+  width: 50%
+  float: left
+
+  td
+    text-align: left
+
+    &.in
+      width: 4em
+
+  input, label
+    line-height: 1em
+    margin: 0
+
+  input
+    width: 2.5em
