@@ -21,7 +21,7 @@
 			<ul id="navlist">
 				<% if signed_in? %>
 				<li><%= link_to 'Log Out (' + current_contestant.email + ')', '/contestants/sign_out', :method => :delete %></li>
-				<% if current_contestant.email == "john@ceaproduction.com" || "Gwatdesigns@gmail.com" %>
+				<% if current_contestant.email == "john@ceaproduction.com" || "Gwatdesigns@gmail.com" || "Katie@taxslayerbowl.com" %>
 					<li><%= link_to 'Admin', '/admin' %></li>
 				<% end %>
 				<% else %>
