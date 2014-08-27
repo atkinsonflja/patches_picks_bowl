@@ -27,13 +27,10 @@
               <tr>
                 <!-- Home Team -->
                 <td class="home vote">
-                  <%= radio_button_tag "games[#{game.id}]", game.home_team_id, @votes[game.id] == game.home_team_id %>
-
-
-
+                  <%= radio_button_tag "games[#{game.id}]", game.home_team_id, @votes[game.id] == game.home_team_id, data: { tt: game.home_team_ttalk } %>
                 </td>
                 <td class="home name">
-                  <label for="<%= "games_#{game.id}_#{game.home_team_id}" %>"><%= game.home_team.name, data: { tt: game.home_team_ttalk } %></label>
+                  <label for="<%= "games_#{game.id}_#{game.home_team_id}" %>"><%= game.home_team.name %></label>
                 </td>
                 <!-- Away Team -->
                 <td class="away name">
