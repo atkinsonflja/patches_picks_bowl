@@ -268,6 +268,23 @@ img#duotwo {
   width: 50%;
 }
 
+img#mainduoone {
+  float: left;
+  width: 30%;
+  margin-right: 3%;
+  clear: both;
+}
+
+img#mainduotwo {
+  float: right;
+  width: 30%;
+  margin-left: 3%;
+}
+
+img.margintop {
+  margin-top: 15%;
+}
+
 a.socialcontainer {
   margin:0 auto !important;
   display: block !important;
@@ -302,11 +319,26 @@ div#homeduo {
     width: 60%;
 }
 
+@media screen and (max-width: 1500px) {
+  img.margintop {
+    margin-top: 20% !important;
+  }
+}
+
+@media screen and (max-width: 1350px) {
+  img.margintop {
+    margin-top: 30% !important;
+  }
+}
+
 @media screen and (min-width: 901px) and (max-width: 1250px) {
   div#homeduo {
     float: right;
     width: 60%;
     margin-top: 95px !important;
+  }
+  img.margintop {
+    margin-top: 45% !important;
   }
 }
 
@@ -418,6 +450,28 @@ div#homeduo {
     clear: both !important;
     margin: 10% auto !important;
   }
+
+  img#mainduoone {
+    display: none !important;
+  }
+
+  img#mainduotwo {
+    display: none !important;
+  }
+
+  div.maincontent {
+    float: none !important;
+    width: 100% !important;
+    margin-top: 20% !important;
+  }
+
+  #voting #pp_toggle {
+    position: relative !important;
+    margin: 0 auto !important;
+    top: -253px !important;
+    left: 0 !important;
+    margin-top: -60px !important;
+  }
 }
 
 div#error_explanation h2 {
@@ -447,7 +501,8 @@ h1#maintitle {
 }
 
 div.maincontent {
-  width: 100%;
+  width: 24%;
+  float: left;
   margin: 0 auto;
   display: block;
   text-align: center;
