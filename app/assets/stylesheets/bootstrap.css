@@ -271,7 +271,7 @@ img#duotwo {
 img#mainduoone {
   float: left;
   width: 30%;
-  margin-right: 3%;
+  margin-right: 8%;
   clear: both;
 }
 
@@ -468,7 +468,7 @@ div#homeduo {
   #voting #pp_toggle {
     position: relative !important;
     margin: 0 auto !important;
-    top: -253px !important;
+    top: -227px !important;
     left: 0 !important;
     margin-top: -60px !important;
   }
