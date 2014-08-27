@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Patches Picks 2014 : Admin</title>
+  <%= stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'admin', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <% if notice -%>
+  <div id="messages"><p class="notice"><%= notice %></p></div>
+  <% end %>
+
+  <nav>
+    <ul>
+      <li><%= link_to "Teams", admin_teams_path %></li>
+      <li><%= link_to "Weeks", admin_weeks_path %></li>
+      <li><%= link_to "Games", admin_games_path %></li>
+    </ul>
+  </nav>
+
+  <%= yield %>
+</body>
+</html>
