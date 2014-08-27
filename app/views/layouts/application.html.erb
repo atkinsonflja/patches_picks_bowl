@@ -21,7 +21,6 @@
 			<ul id="navlist">
 				<% if signed_in? %>
 				<li><%= link_to 'Log Out (' + current_contestant.email + ')', '/contestants/sign_out', :method => :delete %></li>
-				<li><%= link_to 'Edit Account', '/contestants/edit', :method => :get %></li>
 				<% else %>
 					<li><a href="/contestants/sign_in">Sign In/Register</a></li>
 				<% end %>

@@ -1,90 +1,94 @@
-<div id="voting" class="maincontent">
-  <span class="prev week">
-  <%- if @week.previous_week -%>
-    <%= link_to "&lt;".html_safe, play_path(:week => @week.previous_week.number) %>
-  <%- else -%>
-    &lt;
-  <%- end -%>
-  </span>
-  <span class="next week">
-  <%- if @week.next_week -%>
-    <%= link_to "&gt;".html_safe, play_path(:week => @week.next_week.number) %>
-  <%- else -%>
-    &gt;
-  <%- end -%>
-  </span>
-  <h2>Week <%= @week.number %></h2>
-  <div style="margin: 0 auto; display: block; text-align: center;">
-    <hr id="contenttitlebar" />
-    <%= form_tag vote_path do %>
-      <%= hidden_field_tag :week_id, @week.id %>
-      <table class="games">
-        <tbody>
-        <% if !@week.regular_games.blank? %>
-          <% for game in @week.regular_games %>
+<div>
+  <img src="../../assets/duoone.png" id="mainduoone" alt="Duo One" width="" height="" />
+  <div id="voting" class="maincontent">
+    <span class="prev week">
+    <%- if @week.previous_week -%>
+      <%= link_to "&lt;".html_safe, play_path(:week => @week.previous_week.number) %>
+    <%- else -%>
+      &lt;
+    <%- end -%>
+    </span>
+    <span class="next week">
+    <%- if @week.next_week -%>
+      <%= link_to "&gt;".html_safe, play_path(:week => @week.next_week.number) %>
+    <%- else -%>
+      &gt;
+    <%- end -%>
+    </span>
+    <h2>Week <%= @week.number %></h2>
+    <div style="margin: 0 auto; display: block; text-align: center;">
+      <hr id="contenttitlebar" />
+      <%= form_tag vote_path do %>
+        <%= hidden_field_tag :week_id, @week.id %>
+        <table class="games">
+          <tbody>
+          <% if !@week.regular_games.blank? %>
+            <% for game in @week.regular_games %>
+              <tr>
+                <!-- Home Team -->
+                <td class="home vote">
+                  <%= radio_button_tag "games[#{game.id}]", game.home_team_id, @votes[game.id] == game.home_team_id %>
+                </td>
+                <td class="home name">
+                  <label for="<%= "games_#{game.id}_#{game.home_team_id}" %>"><%= game.home_team.name %></label>
+                </td>
+                <!-- Away Team -->
+                <td class="away name">
+                  <label for="<%= "games_#{game.id}_#{game.away_team_id}" %>"><%= game.away_team.name %></label>
+                </td>
+                <td class="away vote">
+                  <%= radio_button_tag "games[#{game.id}]", game.away_team_id, @votes[game.id] == game.away_team_id %>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
             <tr>
-              <!-- Home Team -->
-              <td class="home vote">
-                <%= radio_button_tag "games[#{game.id}]", game.home_team_id, @votes[game.id] == game.home_team_id, data: { tt: game.home_team_ttalk } %>
-              </td>
-              <td class="home name">
-                <label for="<%= "games_#{game.id}_#{game.home_team_id}" %>"><%= game.home_team.name %></label>
-              </td>
-              <!-- Away Team -->
-              <td class="away name">
-                <label for="<%= "games_#{game.id}_#{game.away_team_id}" %>"><%= game.away_team.name %></label>
-              </td>
-              <td class="away vote">
-                <%= radio_button_tag "games[#{game.id}]", game.away_team_id, @votes[game.id] == game.away_team_id, data: { tt: game.away_team_ttalk } %>
-              </td>
+              <td>No games for Week <%= @week.number %> yet.</td>
             </tr>
           <% end %>
-        <% else %>
-          <tr>
-            <td>No games for Week <%= @week.number %> yet.</td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-
-      <hr id="contenttitlebar" />
-
-      <h3>Pick the final score</h3>
-
-      <div class="clearfix">
-        <% if game = @week.tiebreaker_game %>
-        <table id="tiebreaker">
-          <tr>
-            <td class="in"><%= number_field_tag "tiebreaker[home_score]", @tiebreaker.home_score %></td>
-            <td><label><%= game.home_team.name %></label></td>
-          </tr>
-          <tr>
-          <td class="in"><%= number_field_tag "tiebreaker[away_score]", @tiebreaker.away_score %></td>
-          <td><label><%= game.away_team.name %></label></td>
-          </tr>
+          </tbody>
         </table>
-        <% end %>
 
-        <div class="submit">
-          <%= submit_tag "Submit" %>
+        <hr id="contenttitlebar" />
+
+        <h3>Pick the final score</h3>
+
+        <div class="clearfix">
+          <% if game = @week.tiebreaker_game %>
+          <table id="tiebreaker">
+            <tr>
+              <td class="in"><%= number_field_tag "tiebreaker[home_score]", @tiebreaker.home_score %></td>
+              <td><label><%= game.home_team.name %></label></td>
+            </tr>
+            <tr>
+            <td class="in"><%= number_field_tag "tiebreaker[away_score]", @tiebreaker.away_score %></td>
+            <td><label><%= game.away_team.name %></label></td>
+            </tr>
+          </table>
+          <% end %>
+
+          <div class="submit">
+            <%= submit_tag "Submit" %>
+          </div>
+
         </div>
+      <% end %>
+    </div>
 
-      </div>
-    <% end %>
+    <div id="pp_toggle">
+      <%= form_tag "/vote" do |f| %>
+        <ul>
+          <li>
+            <%= radio_button_tag "pp", false, !params[:pp] %>
+            <label for="pp_false">your picks</label>
+          </li>
+          <li>
+            <%= radio_button_tag "pp", true, params[:pp] %>
+            <label for="pp_true">dynamic duo</label>
+          </li>
+      </ul>
+      <% end %>
+    </div>
   </div>
-
-  <div id="pp_toggle">
-    <%= form_tag "/vote" do |f| %>
-      <ul>
-        <li>
-          <%= radio_button_tag "pp", false, !params[:pp] %>
-          <label for="pp_false">your picks</label>
-        </li>
-        <li>
-          <%= radio_button_tag "pp", true, params[:pp] %>
-          <label for="pp_true">dynamic duo</label>
-        </li>
-    </ul>
-    <% end %>
-  </div>
+  <img src="../../assets/duotwo.png" id="mainduotwo" alt="Duo Two" width="" height="" />
 </div>
