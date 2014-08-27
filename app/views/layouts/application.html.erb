@@ -49,12 +49,14 @@
 		<%= yield %>
 	</div>
 	<footer>
-		<span style="font-weight: bold; color: #FFFFFF; margin-bottom: -10px;">TOP PARTICIPANTS |</span>
-		<ul id="top-participant">
-		  <% for contestant in Contestant.top_voters %>
-				<li><%= contestant.display_name %></li>
-		  <% end %>
-		</ul>
+		<div id="top-participants">
+			<span style="font-weight: bold; color: #FFFFFF; margin-bottom: -10px;">TOP PARTICIPANTS |</span>
+			<ul>
+			  <% for contestant in Contestant.top_voters %>
+					<li><%= contestant.display_name %></li>
+			  <% end %>
+			</ul>
+		</div>
 		<hr id="footerbar" />
 		<div id="footerlogos">
 			<div class="row">

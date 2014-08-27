@@ -15,3 +15,19 @@
  *= require play
  *= require_self
  */
+
+#top-participants {
+  max-height: 1.2em;
+  height: 1.2em;
+  overflow: hidden;
+
+  ul {
+    display: inline;
+    margin-left: 0;
+
+    li {
+      display: inline;
+      margin-left: 20px;
+    }
+  }
+}

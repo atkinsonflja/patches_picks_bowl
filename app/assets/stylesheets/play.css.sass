@@ -1,4 +1,5 @@
 #voting
+  position: relative
   padding: 1%
 
   h2
@@ -68,19 +69,43 @@
     color: #666
     line-height: 1.2
 
-#tiebreaker
-  width: 50%
-  float: left
+  #tiebreaker
+    width: 50%
+    float: left
 
-  td
-    text-align: left
+    td
+      text-align: left
 
-    &.in
-      width: 4em
+      &.in
+        width: 4em
 
-  input, label
-    line-height: 1em
-    margin: 0
+    input, label
+      line-height: 1em
+      margin: 0
 
-  input
-    width: 2.5em
+    input
+      width: 2.5em
+
+  #pp_toggle
+    background-color: #ccc
+    width: 120px
+    position: absolute
+    margin-left: 100%
+    top: 20px
+    left: 0
+    padding: 5px 10px
+
+    ul
+      margin: 0
+
+      li
+        list-style: none
+        text-align: left
+
+        input, label
+          margin: 0
+          line-height: 2em
+
+        label
+          display: inline
+          font-weight: bold
