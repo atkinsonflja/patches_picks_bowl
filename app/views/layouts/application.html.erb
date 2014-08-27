@@ -54,7 +54,7 @@
 		<div id="top-participants">
 			<span style="font-weight: bold; color: #FFFFFF; margin-bottom: -10px; float: left;">TOP PARTICIPANTS |</span>
 			<ul>
-				<marquee style="float: left;">
+				<marquee style="float: left; width: 80% !important;">
 				  <% for contestant in Contestant.top_voters %>
 						<li><%= contestant.display_name %></li>
 				  <% end %>
