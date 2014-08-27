@@ -2,6 +2,9 @@ class HomeController < ApplicationController
 
   # GET /
   def index
-    @homes = Home.all
+  end
+
+  # GET /rules
+  def rules
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140827031803) do
+ActiveRecord::Schema.define(version: 20140827032651) do
 
   create_table "contestants", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -39,11 +39,6 @@ ActiveRecord::Schema.define(version: 20140827031803) do
     t.integer  "away_team_id"
     t.string   "away_team_ttalk"
     t.integer  "order"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "rules", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :rules
   resources :teams
   resources :weeks
   resources :tiebreakers
@@ -8,5 +7,7 @@ Rails.application.routes.draw do
   resources :votes
 
   devise_for :contestants
+
+  get '/rules', to: 'home#rules'
   root 'home#index'
 end
