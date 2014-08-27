@@ -53,11 +53,13 @@
 	<footer>
 		<div id="top-participants">
 			<span style="font-weight: bold; color: #FFFFFF; margin-bottom: -10px; float: left;">TOP PARTICIPANTS |</span>
-			<marquee style="float: left;">
-			  <% for contestant in Contestant.top_voters %>
-					<%= contestant.display_name %>
-			  <% end %>
-			</marquee>
+			<ul>
+				<marquee style="float: left;">
+				  <% for contestant in Contestant.top_voters %>
+						<li><%= contestant.display_name %></li>
+				  <% end %>
+				</marquee>
+			</ul>
 		</div>
 		<hr id="footerbar" />
 		<div id="footerlogos">
