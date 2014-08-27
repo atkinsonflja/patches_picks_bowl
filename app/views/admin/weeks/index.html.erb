@@ -1,25 +1,29 @@
-<h1>Listing weeks</h1>
+<h1>Weeks</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Number</th>
-      <th colspan="3"></th>
+      <th>Week</th>
+      <th>Previous</th>
     </tr>
   </thead>
 
   <tbody>
     <% @weeks.each do |week| %>
       <tr>
-        <td><%= week.number %></td>
-        <td><%= link_to 'Show', [:admin, week] %></td>
-        <td><%= link_to 'Edit', edit_admin_week_path(week) %></td>
-        <td><%= link_to 'Destroy', [:admin, week], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "Week #{week.number}", [:admin, week] %></td>
+        <td><%- if p_week = week.previous_week -%>
+            <%= link_to "Week #{p_week.number}", [:admin, p_week] %>
+          <%- end -%></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+<nav>
+  <ul>
+    <li><%= link_to 'New Week', new_admin_week_path %></li>
+  </ul>
+</nav>
 
-<%= link_to 'New Week', new_admin_week_path %>
+

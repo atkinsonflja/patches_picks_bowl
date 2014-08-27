@@ -2,14 +2,13 @@ class Admin::TeamsController < AdminController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/teams
-  # GET /admin/teams.json
   def index
     @teams = Team.all
   end
 
   # GET /admin/teams/1
-  # GET /admin/teams/1.json
   def show
+    redirect_to edit_admin_team_path(@team)
   end
 
   # GET /admin/teams/new
@@ -22,43 +21,28 @@ class Admin::TeamsController < AdminController
   end
 
   # POST /admin/teams
-  # POST /admin/teams.json
   def create
     @team = Team.new(team_params)
-
-    respond_to do |format|
-      if @team.save
-        format.html { redirect_to [:admin, @team], notice: 'Team was successfully created.' }
-        format.json { render :show, status: :created, location: [:admin, @team] }
-      else
-        format.html { render :new }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
-      end
+    if @team.save
+      redirect_to admin_teams_path, notice: "Team '#{@team.name}' was successfully created."
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /admin/teams/1
-  # PATCH/PUT /admin/teams/1.json
   def update
-    respond_to do |format|
-      if @team.update(team_params)
-        format.html { redirect_to [:admin, @team], notice: 'Team was successfully updated.' }
-        format.json { render :show, status: :ok, location: [:admin, @team] }
-      else
-        format.html { render :edit }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
-      end
+    if @team.update(team_params)
+      redirect_to edit_admin_team_path(@team), notice: 'Team was successfully updated.'
+    else
+      render :edit
     end
   end
 
   # DELETE /admin/teams/1
-  # DELETE /admin/teams/1.json
   def destroy
     @team.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_teams_url, notice: 'Team was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to admin_teams_url, notice: 'Team was successfully destroyed.'
   end
 
   private

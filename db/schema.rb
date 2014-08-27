@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140827032651) do
+ActiveRecord::Schema.define(version: 20140827054601) do
 
   create_table "contestants", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -59,12 +59,16 @@ ActiveRecord::Schema.define(version: 20140827032651) do
   end
 
   create_table "votes", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "game_id"
-    t.string   "pick"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "contestant_id"
+    t.integer  "game_id"
+    t.integer  "team_id"
   end
+
+  add_index "votes", ["contestant_id"], name: "index_votes_on_contestant_id"
+  add_index "votes", ["game_id"], name: "index_votes_on_game_id"
+  add_index "votes", ["team_id"], name: "index_votes_on_team_id"
 
   create_table "weeks", force: true do |t|
     t.integer  "number"

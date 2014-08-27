@@ -1,6 +1,10 @@
-<h1>Editing week</h1>
+<h1>Editing Week <%= @week.number %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @week %> |
-<%= link_to 'Back', admin_weeks_path %>
+<nav>
+  <ul>
+    <li><%= link_to 'Destroy', [:admin, @week], method: :delete, data: { confirm: 'Are you sure?' } %></li>
+    <li><%= link_to 'Back', admin_weeks_path %></li>
+  </ul>
+</nav>

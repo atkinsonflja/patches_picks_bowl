@@ -1,6 +1,9 @@
-<h1>Editing game</h1>
+<h1>Editing Game for Week <%= @week.number %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', [:admin, @game] %> |
-<%= link_to 'Back', admin_games_path %>
+<nav>
+  <ul>
+    <li><%= link_to 'Back', admin_week_path(@week) %></li>
+  </ul>
+</nav>

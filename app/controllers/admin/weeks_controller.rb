@@ -8,7 +8,6 @@ class Admin::WeeksController < AdminController
   end
 
   # GET /admin/weeks/1
-  # GET /admin/weeks/1.json
   def show
   end
 
@@ -22,43 +21,28 @@ class Admin::WeeksController < AdminController
   end
 
   # POST /admin/weeks
-  # POST /admin/weeks.json
   def create
     @week = Week.new(week_params)
-
-    respond_to do |format|
-      if @week.save
-        format.html { redirect_to [:admin, @week], notice: 'Week was successfully created.' }
-        format.json { render :show, status: :created, location: [:admin, @week] }
-      else
-        format.html { render :new }
-        format.json { render json: @week.errors, status: :unprocessable_entity }
-      end
+    if @week.save
+      redirect_to [:admin, @week], notice: 'Week was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /admin/weeks/1
-  # PATCH/PUT /admin/weeks/1.json
   def update
-    respond_to do |format|
-      if @week.update(week_params)
-        format.html { redirect_to [:admin, @week], notice: 'Week was successfully updated.' }
-        format.json { render :show, status: :ok, location: [:admin, @week] }
-      else
-        format.html { render :edit }
-        format.json { render json: @week.errors, status: :unprocessable_entity }
-      end
+    if @week.update(week_params)
+      redirect_to [:admin, @week], notice: 'Week was successfully updated.'
+    else
+      render :edit
     end
   end
 
   # DELETE /admin/weeks/1
-  # DELETE /admin/weeks/1.json
   def destroy
     @week.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_weeks_url, notice: 'Week was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to admin_weeks_url, notice: 'Week was successfully destroyed.'
   end
 
   private

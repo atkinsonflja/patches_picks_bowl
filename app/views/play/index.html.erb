@@ -1,0 +1,35 @@
+<div class="maincontent">
+  <center><h2>Week <%= @week.number %></h2></center>
+  <div style="margin: 0 auto; display: block; text-align: center;">
+    <hr id="contenttitlebar" />
+    <%= form_tag vote_path do %>
+      <%= hidden_field_tag :week_id, @week.id %>
+      <table>
+        <tbody>
+        <% if !@week.games.blank? %>
+          <% for game in @week.games %>
+            <tr>
+              <!-- Home Team -->
+              <td class="home-team">
+                <%= radio_button_tag "games[#{game.id}]", game.home_team_id, @games[game.id] == game.home_team_id %>
+                <%= game.home_team.name %>
+              </td>
+              <!-- Away Team -->
+              <td class="away-team">
+                <%= game.away_team.name %>
+                <%= radio_button_tag "games[#{game.id}]", game.away_team_id, @games[game.id] == game.away_team_id %>
+              </td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td>No games for Week <%= @week.number %> yet.</td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <hr id="contenttitlebar" />
+      <%= submit_tag "Submit" %>
+    <% end %>
+  </div>
+</div>
