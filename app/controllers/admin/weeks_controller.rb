@@ -53,6 +53,6 @@ class Admin::WeeksController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def week_params
-      params[:week].permit(:number, :status, :winner, :previous_week_id)
+      params[:week].permit(:number, :status, :winning_contestant_id, :previous_week_id, :next_week_id)
     end
 end

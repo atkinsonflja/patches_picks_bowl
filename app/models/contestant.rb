@@ -4,6 +4,7 @@ class Contestant < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :votes
+  has_many :tiebreakers
 
   # Returns a hash of ids that looks like:
   #

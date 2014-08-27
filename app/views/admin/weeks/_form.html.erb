@@ -20,12 +20,16 @@
     <%= f.check_box :status %>
   </div>
   <div class="field">
-    <%= f.label :winner %><br>
-    <%= f.text_field :winner %>
-  </div>
-  <div class="field">
     <%= f.label :previous_week_id %><br>
     <%= f.select :previous_week_id, Week.all.collect { |w| [ "Week #{w.number}", w.id ] }, { include_blank: true } %>
+  </div>
+  <div class="field">
+    <%= f.label :next_week_id %><br>
+    <%= f.select :next_week_id, Week.all.collect { |w| [ "Week #{w.number}", w.id ] }, { include_blank: true } %>
+  </div>
+  <div class="field">
+    <%= f.label :winning_contestant_id %><br>
+    <%= f.text_field :winning_contestant_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

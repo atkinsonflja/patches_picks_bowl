@@ -1,1 +1,17 @@
+//= require bootstrap
+//= require bootstrap-responsive
 //= require_self
+
+body {
+  padding-top: 60px;
+  background-color: white !important;
+  color: #000;
+
+  a {
+    color: #333;
+
+    &:hover {
+      color: #666;
+    }
+  }
+}

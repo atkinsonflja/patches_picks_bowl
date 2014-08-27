@@ -1,4 +1,4 @@
-<div class="maincontent">
+<div id="voting" class="maincontent">
   <center><h2>Week <%= @week.number %></h2></center>
   <div style="margin: 0 auto; display: block; text-align: center;">
     <hr id="contenttitlebar" />
@@ -6,18 +6,18 @@
       <%= hidden_field_tag :week_id, @week.id %>
       <table>
         <tbody>
-        <% if !@week.games.blank? %>
-          <% for game in @week.games %>
+        <% if !@week.regular_games.blank? %>
+          <% for game in @week.regular_games %>
             <tr>
               <!-- Home Team -->
               <td class="home-team">
-                <%= radio_button_tag "games[#{game.id}]", game.home_team_id, @games[game.id] == game.home_team_id %>
+                <%= radio_button_tag "games[#{game.id}]", game.home_team_id, @votes[game.id] == game.home_team_id %>
                 <%= game.home_team.name %>
               </td>
               <!-- Away Team -->
               <td class="away-team">
                 <%= game.away_team.name %>
-                <%= radio_button_tag "games[#{game.id}]", game.away_team_id, @games[game.id] == game.away_team_id %>
+                <%= radio_button_tag "games[#{game.id}]", game.away_team_id, @votes[game.id] == game.away_team_id %>
               </td>
             </tr>
           <% end %>
@@ -29,6 +29,20 @@
         </tbody>
       </table>
       <hr id="contenttitlebar" />
+
+      <% if game = @week.tiebreaker_game %>
+        <table id="tiebreaker">
+          <tr>
+            <td><%= number_field_tag "tiebreaker[home_score]", @tiebreaker.home_score %></td>
+            <td><label><%= game.home_team.name %></label></td>
+          </tr>
+          <tr>
+          <td><%= number_field_tag "tiebreaker[away_score]", @tiebreaker.away_score %></td>
+          <td><label><%= game.away_team.name %></label></td>
+          </tr>
+        </table>
+      <% end %>
+
       <%= submit_tag "Submit" %>
     <% end %>
   </div>

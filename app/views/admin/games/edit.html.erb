@@ -4,6 +4,7 @@
 
 <nav>
   <ul>
+    <li><%= link_to 'Destroy', [:admin, @week, @game], method: :delete, data: { confirm: 'Are you sure?' } %></li>
     <li><%= link_to 'Back', admin_week_path(@week) %></li>
   </ul>
 </nav>

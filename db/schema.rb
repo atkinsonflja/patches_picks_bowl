@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140827054601) do
+ActiveRecord::Schema.define(version: 20140827075151) do
 
   create_table "contestants", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20140827054601) do
     t.integer  "order"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "winning_team_id"
   end
 
   create_table "teams", force: true do |t|
@@ -50,12 +51,12 @@ ActiveRecord::Schema.define(version: 20140827054601) do
   end
 
   create_table "tiebreakers", force: true do |t|
-    t.integer  "user_id"
     t.integer  "home_score"
     t.integer  "away_score"
     t.integer  "game_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "contestant_id"
   end
 
   create_table "votes", force: true do |t|
@@ -73,10 +74,14 @@ ActiveRecord::Schema.define(version: 20140827054601) do
   create_table "weeks", force: true do |t|
     t.integer  "number"
     t.boolean  "status"
-    t.string   "winner"
     t.integer  "previous_week_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "winning_contestant_id"
+    t.integer  "tiebreaker_game_id"
+    t.integer  "next_week_id"
   end
+
+  add_index "weeks", ["next_week_id"], name: "index_weeks_on_next_week_id"
 
 end

@@ -1,10 +1,11 @@
 <h1>Weeks</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Week</th>
       <th>Previous</th>
+      <th>Next</th>
     </tr>
   </thead>
 
@@ -14,6 +15,9 @@
         <td><%= link_to "Week #{week.number}", [:admin, week] %></td>
         <td><%- if p_week = week.previous_week -%>
             <%= link_to "Week #{p_week.number}", [:admin, p_week] %>
+          <%- end -%></td>
+        <td><%- if n_week = week.next_week -%>
+            <%= link_to "Week #{n_week.number}", [:admin, n_week] %>
           <%- end -%></td>
       </tr>
     <% end %>

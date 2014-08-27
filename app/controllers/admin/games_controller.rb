@@ -59,6 +59,6 @@ class Admin::GamesController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:week_id, :home_team_id, :home_team_ttalk, :away_team_id, :away_team_ttalk, :order)
+      params.require(:game).permit(:week_id, :home_team_id, :home_team_ttalk, :away_team_id, :away_team_ttalk, :order, :winning_team_id)
     end
 end

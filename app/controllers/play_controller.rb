@@ -4,7 +4,7 @@ class PlayController < ApplicationController
 
   # GET /play
   def index
-    @games = current_contestant.votes_for(@week)
+    @votes = current_contestant.votes_for(@week)
   end
 
   # POST /play/vote
@@ -14,6 +14,8 @@ class PlayController < ApplicationController
       vote.team_id = team_id
       vote.save
     end
+    @tiebreaker.update_attributes(tiebreaker_params)
+
     redirect_to play_path, notice: "Your votes have been cast!"
   end
 
@@ -21,6 +23,11 @@ class PlayController < ApplicationController
 
   def set_week
     @week = Week.current_or_number(params[:week])
+    @tiebreaker = current_contestant.tiebreakers.where(:game => @week.tiebreaker_game).first_or_initialize
     redirect_to(root_path, notice: "Couldn't find any weeks!") if @week.nil?
+  end
+
+  def tiebreaker_params
+    params[:tiebreaker].permit(:home_score, :away_score)
   end
 end
