@@ -24,6 +24,9 @@
     </span>
     <h2>Week <%= @week.number %></h2>
     <div style="margin: 0 auto; display: block; text-align: center;">
+      <% if !@votes.blank? %>
+        <p style="font-size: 13px;"><%= current_contestant.email %>'s votes</p>
+      <% end %>
       <hr id="contenttitlebar" />
       <%= form_tag vote_path do %>
         <%= hidden_field_tag :week_id, @week.id %>
@@ -99,7 +102,7 @@
               </table>
             <% end %>
           <% else %>
-            <% if game = @week.tiebreaker_game %>
+            <% if game = @week.tiebreaker_game && @week.status = 1 %>
             <table id="tiebreaker">
               <tr>
                 <td class="in"><%= number_field_tag "tiebreaker[home_score]", @tiebreaker.home_score, in: 1...200, :required => true %></td>
