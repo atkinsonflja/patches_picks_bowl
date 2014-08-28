@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  if Rails.env.production?
+    constraints(:host => /^(?!picks\.taxslayerbowl\.com)/i) do
+      match "/(*path)" => redirect {
+        |params, req| "http://picks.taxslayerbowl.com/#{params[:path]}"
+        },  via: [:get, :post]
+    end
+  end
+
   namespace :admin do
     resources :weeks
   end
