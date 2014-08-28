@@ -113,9 +113,15 @@
             <% end %>
           <% end %>
 
-          <div class="submit">
-            <%= submit_tag "Submit" %>
-          </div>
+          <% if !@votes.blank? %>
+            <div class="psubmit">
+              <%= submit_tag "Submit", :class => "displaynone", :disabled => true %>
+            </div>
+          <% else %>
+            <div class="submit">
+              <%= submit_tag "Submit"%>
+            </div>
+          <% end %>
 
         </div>
       <% end %>
