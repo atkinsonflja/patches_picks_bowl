@@ -70,7 +70,7 @@
 			<ul>
 				<marquee id="topp">
 				  <% for contestant in Contestant.top_voters %>
-						<li><%= contestant.display_name.count + ". " + contestant.display_name %></li>
+						<li><%= contestant.display_name %></li>
 				  <% end %>
 				</marquee>
 			</ul>
