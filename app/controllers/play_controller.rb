@@ -29,6 +29,6 @@ class PlayController < ApplicationController
   end
 
   def tiebreaker_params
-    params[:tiebreaker].require.permit(:home_score, :away_score)
+    params[:tiebreaker].permit(:home_score, :away_score)
   end
 end

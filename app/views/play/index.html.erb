@@ -37,12 +37,12 @@
                   <label for="<%= "games_#{game.id}_#{game.home_team_id}" %>"><%= game.home_team.name %></label>
                 </td>
                 <td class="home vote">
-                  <%= radio_button_tag "games[#{game.id}]", game.home_team_id, @votes[game.id] == game.home_team_id, data: { tt: game.home_team_ttalk }, :required => true %>
+                  <%= radio_button_tag "games[#{game.id}]", game.home_team_id, @votes[game.id] == game.home_team_id, data: { tt: game.home_team_ttalk } %>
                 </td>
                 <td>vs.</td>
                 <!-- Away Team -->
                 <td class="away vote">
-                  <%= radio_button_tag "games[#{game.id}]", game.away_team_id, @votes[game.id] == game.away_team_id, data: { tt: game.away_team_ttalk, :required => true } %>
+                  <%= radio_button_tag "games[#{game.id}]", game.away_team_id, @votes[game.id] == game.away_team_id, data: { tt: game.away_team_ttalk } %>
                 </td>
                 <td class="away name">
                   <label for="<%= "games_#{game.id}_#{game.away_team_id}" %>"><%= game.away_team.name %></label>
