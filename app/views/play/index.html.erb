@@ -1,3 +1,10 @@
+<script type="text/javascript">
+  $( document ).ready(function() {
+  $(".vote input[type=radio]").on("click", function() {
+    $("#maintitle").text($(this).data("tt"));
+  });
+});
+</script>
 <div>
   <img src="../../assets/duoone.png" id="mainduoone" class="pmargintop" alt="Duo One" width="" height="" />
   <div id="voting" class="maincontent">
