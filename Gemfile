@@ -12,7 +12,6 @@ end
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'foreman'
 end
 # Add Devise
 gem 'devise'
