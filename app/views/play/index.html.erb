@@ -30,24 +30,47 @@
         <table class="games">
           <tbody>
           <% if !@week.regular_games.blank? %>
-            <% for game in @week.regular_games %>
-              <tr>
-                <!-- Home Team -->
-                <td class="home name">
-                  <label for="<%= "games_#{game.id}_#{game.home_team_id}" %>"><%= game.home_team.name %></label>
-                </td>
-                <td class="home vote">
-                  <%= radio_button_tag "games[#{game.id}]", game.home_team_id, @votes[game.id] == game.home_team_id, data: { tt: game.home_team_ttalk } %>
-                </td>
-                <td>vs.</td>
-                <!-- Away Team -->
-                <td class="away vote">
-                  <%= radio_button_tag "games[#{game.id}]", game.away_team_id, @votes[game.id] == game.away_team_id, data: { tt: game.away_team_ttalk } %>
-                </td>
-                <td class="away name">
-                  <label for="<%= "games_#{game.id}_#{game.away_team_id}" %>"><%= game.away_team.name %></label>
-                </td>
-              </tr>
+            <% if !@votes.blank? %>
+              <% for game in @week.regular_games %>
+                <tr>
+                  <!-- Home Team -->
+                  <td class="home name">
+                    <label for="<%= "games_#{game.id}_#{game.home_team_id}" %>"><%= game.home_team.name %></label>
+                  </td>
+                  <td class="home vote">
+                    <%= radio_button_tag "games[#{game.id}]", game.home_team_id, @votes[game.id] == game.home_team_id, data: { tt: game.home_team_ttalk }, :disabled => true %>
+                  </td>
+                  <td>vs.</td>
+                  <!-- Away Team -->
+                  <td class="away vote">
+                    <%= radio_button_tag "games[#{game.id}]", game.away_team_id, @votes[game.id] == game.away_team_id, data: { tt: game.away_team_ttalk }, :disabled => true %>
+                  </td>
+                  <td class="away name">
+                    <label for="<%= "games_#{game.id}_#{game.away_team_id}" %>"><%= game.away_team.name %></label>
+                  </td>
+                </tr>
+              <% end %>
+
+            <% else %>
+              <% for game in @week.regular_games %>
+                <tr>
+                  <!-- Home Team -->
+                  <td class="home name">
+                    <label for="<%= "games_#{game.id}_#{game.home_team_id}" %>"><%= game.home_team.name %></label>
+                  </td>
+                  <td class="home vote">
+                    <%= radio_button_tag "games[#{game.id}]", game.home_team_id, @votes[game.id] == game.home_team_id, data: { tt: game.home_team_ttalk } %>
+                  </td>
+                  <td>vs.</td>
+                  <!-- Away Team -->
+                  <td class="away vote">
+                    <%= radio_button_tag "games[#{game.id}]", game.away_team_id, @votes[game.id] == game.away_team_id, data: { tt: game.away_team_ttalk } %>
+                  </td>
+                  <td class="away name">
+                    <label for="<%= "games_#{game.id}_#{game.away_team_id}" %>"><%= game.away_team.name %></label>
+                  </td>
+                </tr>
+              <% end %>
             <% end %>
           <% else %>
             <tr>
@@ -62,17 +85,32 @@
         <h3>Pick the final score</h3>
 
         <div class="clearfix">
-          <% if game = @week.tiebreaker_game %>
-          <table id="tiebreaker">
-            <tr>
-              <td class="in"><%= number_field_tag "tiebreaker[home_score]", @tiebreaker.home_score, in: 1...200, :required => true %></td>
-              <td><label><%= game.home_team.name %></label></td>
-            </tr>
-            <tr>
-            <td class="in"><%= number_field_tag "tiebreaker[away_score]", @tiebreaker.away_score, in: 1...200, :required => true %></td>
-            <td><label><%= game.away_team.name %></label></td>
-            </tr>
-          </table>
+          <% if !@votes.blank? %>
+            <% if game = @week.tiebreaker_game %>
+              <table id="tiebreaker">
+                <tr>
+                  <td class="in"><%= number_field_tag "tiebreaker[home_score]", @tiebreaker.home_score, in: 1...200, :required => true, :disabled => true %></td>
+                  <td><label><%= game.home_team.name %></label></td>
+                </tr>
+                <tr>
+                <td class="in"><%= number_field_tag "tiebreaker[away_score]", @tiebreaker.away_score, in: 1...200, :required => true, :disabled => true %></td>
+                <td><label><%= game.away_team.name %></label></td>
+                </tr>
+              </table>
+            <% end %>
+          <% else %>
+            <% if game = @week.tiebreaker_game %>
+            <table id="tiebreaker">
+              <tr>
+                <td class="in"><%= number_field_tag "tiebreaker[home_score]", @tiebreaker.home_score, in: 1...200, :required => true %></td>
+                <td><label><%= game.home_team.name %></label></td>
+              </tr>
+              <tr>
+              <td class="in"><%= number_field_tag "tiebreaker[away_score]", @tiebreaker.away_score, in: 1...200, :required => true %></td>
+              <td><label><%= game.away_team.name %></label></td>
+              </tr>
+            </table>
+            <% end %>
           <% end %>
 
           <div class="submit">
