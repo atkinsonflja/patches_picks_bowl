@@ -277,7 +277,8 @@ img#mainduoone {
 
 img#mainduotwo {
   float: right;
-  width: 33%;
+  width: 30%;
+  margin-left: 3%;
 }
 
 img.margintop {
