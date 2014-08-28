@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  
+  match "patchespicks.herokuapp.com", :to => redirect("picks.taxslayerbowl.com")
 
   namespace :admin do
     resources :weeks
