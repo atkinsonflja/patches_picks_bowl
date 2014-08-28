@@ -68,9 +68,11 @@
 			<span style="font-weight: bold; color: #FFFFFF; margin-bottom: -10px; float: left;">TOP PARTICIPANTS |</span>
 			<ul>
 				<marquee id="topp">
-				  <% for contestant in Contestant.top_voters %>
-						<li><%= contestant.display_name %></li>
-				  <% end %>
+				  <% c_count = 0 %>
+				    <% for contestant in Contestant.top_voters %>
+				  	  <% c_count += 1 %>
+					    <li><%= c_count %>. <%= contestant.display_name %></li>
+				    <% end %>
 				</marquee>
 			</ul>
 		</div>
