@@ -17,3 +17,5 @@
 
 .DS_Store
 .sublime-project
+.env
+Procfile
