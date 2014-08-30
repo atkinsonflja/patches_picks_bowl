@@ -33,7 +33,7 @@
         <table class="games">
           <tbody>
           <% if !@week.regular_games.blank? %>
-            <% if !@votes.blank? or @week.number == 1 %>
+            <% if !@votes.blank? or @week.number == 1 or @week.number == 2 %>
               <% for game in @week.regular_games %>
                 <tr>
                   <!-- Home Team -->
@@ -88,7 +88,7 @@
         <h3>Pick the final score</h3>
 
         <div class="clearfix">
-          <% if !@votes.blank? or @week.number == 1 %>
+          <% if !@votes.blank? or @week.number == 1 or @week.number == 2 %>
             <% if game = @week.tiebreaker_game %>
               <table id="tiebreaker">
                 <tr>
@@ -116,7 +116,7 @@
             <% end %>
           <% end %>
 
-          <% if !@votes.blank? or @week.number == 1 %>
+          <% if !@votes.blank? or @week.number == 1 or @week.number == 2 %>
             <div class="psubmit">
               <%= submit_tag "Submit", :class => "displaynone", :disabled => true %>
             </div>
