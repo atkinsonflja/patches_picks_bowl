@@ -23,6 +23,9 @@
     <%- end -%>
     </span>
     <h2>Week <%= @week.number %></h2>
+    <% if @week.number == 1 %>
+      <ul><li style="list-style: none;">Voting for Week <%= @week.number %> has ended</li></ul>
+    <% end %>
     <div style="margin: 0 auto; display: block; text-align: center;">
       <hr id="contenttitlebar" />
       <%= form_tag vote_path do %>
@@ -30,7 +33,7 @@
         <table class="games">
           <tbody>
           <% if !@week.regular_games.blank? %>
-            <% if !@votes.blank? %>
+            <% if !@votes.blank? or @week.number == 1 %>
               <% for game in @week.regular_games %>
                 <tr>
                   <!-- Home Team -->
@@ -85,7 +88,7 @@
         <h3>Pick the final score</h3>
 
         <div class="clearfix">
-          <% if !@votes.blank? %>
+          <% if !@votes.blank? or @week.number == 1 %>
             <% if game = @week.tiebreaker_game %>
               <table id="tiebreaker">
                 <tr>
@@ -113,7 +116,7 @@
             <% end %>
           <% end %>
 
-          <% if !@votes.blank? %>
+          <% if !@votes.blank? or @week.number == 1 %>
             <div class="psubmit">
               <%= submit_tag "Submit", :class => "displaynone", :disabled => true %>
             </div>
