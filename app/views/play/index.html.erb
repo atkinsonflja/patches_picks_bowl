@@ -26,6 +26,9 @@
     <% if @week.number == 1 %>
       <ul><li style="list-style: none;">Voting for Week <%= @week.number %> has ended</li></ul>
     <% end %>
+    <% if @week.number == 2 %>
+      <ul><li style="list-style: none;">Voting for Week <%= @week.number %> will begin shortly</li></ul>
+    <% end %>
     <div style="margin: 0 auto; display: block; text-align: center;">
       <hr id="contenttitlebar" />
       <%= form_tag vote_path do %>
