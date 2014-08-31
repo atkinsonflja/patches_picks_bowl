@@ -1,10 +1,3 @@
-<script type="text/javascript">
-  $( document ).ready(function() {
-  $(".vote input[type=radio]").on("click", function() {
-    $("#maintitle").text($(this).data("tt"));
-  });
-});
-</script>
 <div>
   <img src="../../assets/duoone.png" id="mainduoone" class="pmargintop" alt="Duo One" width="" height="" />
   <div id="voting" class="maincontent">
@@ -43,12 +36,20 @@
                   <label for="<%= "games_#{game.id}_#{game.home_team_id}" %>"><%= game.home_team.name %></label>
                 </td>
                 <td class="home vote">
-                  <%= radio_button_tag "games[#{game.id}]", game.home_team_id, @votes[game.id] == game.home_team_id, data: { tt: game.home_team_ttalk }, :disabled => !@week.status %>
+                  <% if @current_week.number %>
+                    <%= radio_button_tag "games[#{game.id}]", game.home_team_id, @votes[game.id] == game.home_team_id, data: { tt: game.home_team_ttalk }, :disabled => true %>
+                  <% else %>
+                    <%= radio_button_tag "games[#{game.id}]", game.home_team_id, @votes[game.id] == game.home_team_id, data: { tt: game.home_team_ttalk }, :disabled => @week.status %>
+                  <% end %>
                 </td>
                 <td>vs.</td>
                 <!-- Away Team -->
                 <td class="away vote">
-                  <%= radio_button_tag "games[#{game.id}]", game.away_team_id, @votes[game.id] == game.away_team_id, data: { tt: game.away_team_ttalk }, :disabled => !@week.status %>
+                  <% if @current_week.number %>
+                    <%= radio_button_tag "games[#{game.id}]", game.away_team_id, @votes[game.id] == game.away_team_id, data: { tt: game.away_team_ttalk }, :disabled => true %>
+                  <% else %>
+                    <%= radio_button_tag "games[#{game.id}]", game.away_team_id, @votes[game.id] == game.away_team_id, data: { tt: game.away_team_ttalk }, :disabled => @week.status %>
+                  <% end %>
                 </td>
                 <td class="away name">
                   <label for="<%= "games_#{game.id}_#{game.away_team_id}" %>"><%= game.away_team.name %></label>
