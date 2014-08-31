@@ -23,60 +23,37 @@
     <%- end -%>
     </span>
     <h2>Week <%= @week.number %></h2>
-    <% if @week.number == 1 %>
+    <% if @week.number < @current_week.number %>
       <ul><li style="list-style: none;">Voting for Week <%= @week.number %> has ended</li></ul>
     <% end %>
-    <% if @week.number == 2 %>
+    <% if @week.number > @current_week.number %>
       <ul><li style="list-style: none;">Voting for Week <%= @week.number %> will begin shortly</li></ul>
     <% end %>
     <div style="margin: 0 auto; display: block; text-align: center;">
       <hr id="contenttitlebar" />
       <%= form_tag vote_path do %>
-        <%= hidden_field_tag :week_id, @week.id %>
+        <%= hidden_field_tag :week, @week.id %>
         <table class="games">
           <tbody>
           <% if !@week.regular_games.blank? %>
-            <% if !@votes.blank? or @week.number == 1 or @week.number == 2 %>
-              <% for game in @week.regular_games %>
-                <tr>
-                  <!-- Home Team -->
-                  <td class="home name">
-                    <label for="<%= "games_#{game.id}_#{game.home_team_id}" %>"><%= game.home_team.name %></label>
-                  </td>
-                  <td class="home vote">
-                    <%= radio_button_tag "games[#{game.id}]", game.home_team_id, @votes[game.id] == game.home_team_id, data: { tt: game.home_team_ttalk }, :disabled => true %>
-                  </td>
-                  <td>vs.</td>
-                  <!-- Away Team -->
-                  <td class="away vote">
-                    <%= radio_button_tag "games[#{game.id}]", game.away_team_id, @votes[game.id] == game.away_team_id, data: { tt: game.away_team_ttalk }, :disabled => true %>
-                  </td>
-                  <td class="away name">
-                    <label for="<%= "games_#{game.id}_#{game.away_team_id}" %>"><%= game.away_team.name %></label>
-                  </td>
-                </tr>
-              <% end %>
-
-            <% else %>
-              <% for game in @week.regular_games %>
-                <tr>
-                  <!-- Home Team -->
-                  <td class="home name">
-                    <label for="<%= "games_#{game.id}_#{game.home_team_id}" %>"><%= game.home_team.name %></label>
-                  </td>
-                  <td class="home vote">
-                    <%= radio_button_tag "games[#{game.id}]", game.home_team_id, @votes[game.id] == game.home_team_id, data: { tt: game.home_team_ttalk } %>
-                  </td>
-                  <td>vs.</td>
-                  <!-- Away Team -->
-                  <td class="away vote">
-                    <%= radio_button_tag "games[#{game.id}]", game.away_team_id, @votes[game.id] == game.away_team_id, data: { tt: game.away_team_ttalk } %>
-                  </td>
-                  <td class="away name">
-                    <label for="<%= "games_#{game.id}_#{game.away_team_id}" %>"><%= game.away_team.name %></label>
-                  </td>
-                </tr>
-              <% end %>
+            <% for game in @week.regular_games %>
+              <tr>
+                <!-- Home Team -->
+                <td class="home name">
+                  <label for="<%= "games_#{game.id}_#{game.home_team_id}" %>"><%= game.home_team.name %></label>
+                </td>
+                <td class="home vote">
+                  <%= radio_button_tag "games[#{game.id}]", game.home_team_id, @votes[game.id] == game.home_team_id, data: { tt: game.home_team_ttalk }, :disabled => !@week.status %>
+                </td>
+                <td>vs.</td>
+                <!-- Away Team -->
+                <td class="away vote">
+                  <%= radio_button_tag "games[#{game.id}]", game.away_team_id, @votes[game.id] == game.away_team_id, data: { tt: game.away_team_ttalk }, :disabled => !@week.status %>
+                </td>
+                <td class="away name">
+                  <label for="<%= "games_#{game.id}_#{game.away_team_id}" %>"><%= game.away_team.name %></label>
+                </td>
+              </tr>
             <% end %>
           <% else %>
             <tr>
@@ -85,54 +62,34 @@
           <% end %>
           </tbody>
         </table>
-
+ 
         <hr id="contenttitlebar" />
-
+ 
         <h3>Pick the final score</h3>
-
+ 
         <div class="clearfix">
-          <% if !@votes.blank? or @week.number == 1 or @week.number == 2 %>
-            <% if game = @week.tiebreaker_game %>
-              <table id="tiebreaker">
-                <tr>
-                  <td class="in"><%= number_field_tag "tiebreaker[home_score]", @tiebreaker.home_score, in: 1...200, :required => true, :disabled => true %></td>
-                  <td><label><%= game.home_team.name %></label></td>
-                </tr>
-                <tr>
-                <td class="in"><%= number_field_tag "tiebreaker[away_score]", @tiebreaker.away_score, in: 1...200, :required => true, :disabled => true %></td>
-                <td><label><%= game.away_team.name %></label></td>
-                </tr>
-              </table>
-            <% end %>
-          <% else %>
-            <% if game = @week.tiebreaker_game %>
+          <% if game = @week.tiebreaker_game %>
             <table id="tiebreaker">
               <tr>
-                <td class="in"><%= number_field_tag "tiebreaker[home_score]", @tiebreaker.home_score, in: 1...200, :required => true %></td>
+                <td class="in"><%= number_field_tag "tiebreaker[home_score]", @tiebreaker.home_score, in: 1...200, :required => true, :disabled => !@week.status %></td>
                 <td><label><%= game.home_team.name %></label></td>
               </tr>
               <tr>
-              <td class="in"><%= number_field_tag "tiebreaker[away_score]", @tiebreaker.away_score, in: 1...200, :required => true %></td>
+              <td class="in"><%= number_field_tag "tiebreaker[away_score]", @tiebreaker.away_score, in: 1...200, :required => true, :disabled => !@week.status %></td>
               <td><label><%= game.away_team.name %></label></td>
               </tr>
             </table>
-            <% end %>
           <% end %>
-
-          <% if !@votes.blank? or @week.number == 1 or @week.number == 2 %>
-            <div class="psubmit">
-              <%= submit_tag "Submit", :class => "displaynone", :disabled => true %>
-            </div>
-          <% else %>
+ 
+          <% if @week.status %>
             <div class="submit">
               <%= submit_tag "Submit"%>
             </div>
           <% end %>
-
         </div>
       <% end %>
     </div>
-
+ 
     <div id="pp_toggle">
       <%= form_tag "/vote" do |f| %>
         <ul>

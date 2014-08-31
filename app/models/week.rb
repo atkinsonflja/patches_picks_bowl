@@ -21,8 +21,7 @@ class Week < ActiveRecord::Base
 
   def self.current_or_number(week_number)
     if week_number.blank?
-      # TODO: A way to select the real current week!
-      first
+      where(:status => true).first
     else
       where(:number => week_number).first
     end
