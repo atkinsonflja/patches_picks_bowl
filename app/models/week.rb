@@ -55,7 +55,7 @@ class Week < ActiveRecord::Base
       end
     end
 
-    if winners.size > 0
+    if winners.size > 1
       tie_winners = []
       lowest_diff = 1000000000 # Ridiculous number
       winners.each do |contestant|
@@ -65,12 +65,14 @@ class Week < ActiveRecord::Base
           away = (tiebreaker.away_score - tiebreaker_game.away_score).abs
           diff = home + away
           if diff < lowest_diff
+            tie_winners = [contestant]
             lowest_diff = diff
+          elsif diff == lowest_diff
             tie_winners << contestant
           end
         end
       end
-      winners = tie_winners
+      winners = tie_winners unless tie_winners.empty?
     end
 
     update_attribute(:winning_contestant, winners.sample)

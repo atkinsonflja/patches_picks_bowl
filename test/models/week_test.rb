@@ -15,9 +15,9 @@ class WeekTest < ActiveSupport::TestCase
 
     # Week 2
 
-    @joe.votes.create(      game: games(:apes_v_giants), team: teams(:giants))
+    @joe.votes.create(      game: games(:apes_v_giants), team: teams(:apes))
     @joe.tiebreakers.create(game: games(:falcons_v_humans),    home_score: 23, away_score: 5)
-    @bob.votes.create(      game: games(:apes_v_giants), team: teams(:giants))
+    @bob.votes.create(      game: games(:apes_v_giants), team: teams(:apes))
     @bob.tiebreakers.create(game: games(:falcons_v_humans),    home_score: 13, away_score: 4)
 
   end
