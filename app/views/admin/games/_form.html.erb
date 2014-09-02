@@ -39,6 +39,16 @@
     <%= f.label :winning_team_id %><br>
     <%= f.select :winning_team_id, [@game.home_team, @game.away_team].compact.collect { |t| [ t.name, t.id ] }, include_blank: true %>
   </div>
+  <% if @week.tiebreaker_game == @game %>
+    <div class="field">
+      <%= f.label :home_score %><br>
+      <%= f.number_field :home_score %>
+    </div>
+    <div class="field">
+      <%= f.label :away_score %><br>
+      <%= f.number_field :away_score %>
+    </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>
