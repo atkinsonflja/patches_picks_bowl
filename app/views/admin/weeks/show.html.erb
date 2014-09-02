@@ -24,6 +24,27 @@
   </tbody>
 </table>
 
+<% if @week.winning_contestant %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Winning Contestant</th>
+      </tr>
+      <tr>
+        <th><%= @week.winning_contestant.email %> - <%= @week.winning_contestant.display_name %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @week.winning_contestant.votes.each do |vote| %>
+        <tr>
+          <td><%= vote %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
 <nav>
   <ul>
     <li><%= link_to 'New Game', new_admin_week_game_path(@week) %></li>
