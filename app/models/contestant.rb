@@ -28,4 +28,9 @@ class Contestant < ActiveRecord::Base
   def display_name
     email.split("@").first.titleize # temp, instead of First Name, Last initial
   end
+
+  def is_admin?
+    tsbadmin = [ "john@ceaproduction.com", "Gwatdesigns@gmail.com", "Katie@taxslayerbowl.com" ]
+    tsbadmin.include?(email)
+  end
 end
