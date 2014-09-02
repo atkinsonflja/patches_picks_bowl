@@ -38,7 +38,7 @@
     <tbody>
       <% @week.winning_contestant.votes.each do |vote| %>
         <tr>
-          <td><%= vote %></td>
+          <td><%= vote.team.name %></td>
         </tr>
       <% end %>
     </tbody>
