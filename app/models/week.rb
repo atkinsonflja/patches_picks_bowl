@@ -26,4 +26,53 @@ class Week < ActiveRecord::Base
       where(:number => week_number).first
     end
   end
+
+  def solve_winner!
+    winners = []
+    best = 0
+
+    Contestant.all.each do |contestant|
+      current = 0
+      games.all.each do |game|
+        if game == tiebreaker_game
+          tiebreaker = contestant.tiebreakers.where(game: game).first
+          if tiebreaker && game.winning_team == game.home_team && tiebreaker.home_score > tiebreaker.away_score
+            current += 1
+          end
+        else
+          vote = contestant.votes.where(game: game).first
+          if vote && vote.team == game.winning_team
+            current += 1
+          end
+        end
+      end
+
+      if current > best
+        winners = [contestant]
+        best = current
+      elsif current == best
+        winners << contestant
+      end
+    end
+
+    if winners.size > 0
+      tie_winners = []
+      lowest_diff = 1000000000 # Ridiculous number
+      winners.each do |contestant|
+        tiebreaker = contestant.tiebreakers.where(game: tiebreaker_game).first
+        if tiebreaker
+          home = (tiebreaker.home_score - tiebreaker_game.home_score).abs
+          away = (tiebreaker.away_score - tiebreaker_game.away_score).abs
+          diff = home + away
+          if diff < lowest_diff
+            lowest_diff = diff
+            tie_winners << contestant
+          end
+        end
+      end
+      winners = tie_winners
+    end
+
+    update_attribute(:winning_contestant, winners.sample)
+  end
 end

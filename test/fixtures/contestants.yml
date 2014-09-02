@@ -1,0 +1,9 @@
+---
+joe:
+  email: joe@example.com
+  encrypted_password: "$2a$10$0HbUQ46aBGT5vBhSNipzLe6bhIWlhFbQVe1wcKpyAeu8stbpHPqVS"
+  votes_count: 2
+bob:
+  email: bob@example.com
+  encrypted_password: "$2a$10$VjUX0FfEsS8riMhp/G7HJuP/DhsAXcetqNaO1pp66O/kD6bTEX/Ce"
+  votes_count: 1

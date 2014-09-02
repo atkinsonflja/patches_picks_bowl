@@ -1,0 +1,9 @@
+---
+giants:
+  name: Giants
+falcons:
+  name: Falcons
+apes:
+  name: Apes
+humans:
+  name: Humans

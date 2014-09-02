@@ -1,0 +1,15 @@
+---
+one:
+  number: 1
+  status: f
+  previous_week:
+  winning_contestant:
+  tiebreaker_game: apes_v_humans
+  next_week: two
+two:
+  number: 2
+  status: t
+  previous_week: one
+  winning_contestant:
+  tiebreaker_game: falcons_v_humans
+  next_week:

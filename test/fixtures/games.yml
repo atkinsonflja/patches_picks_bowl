@@ -1,0 +1,41 @@
+---
+giants_v_falcons:
+  week: one
+  home_team: giants
+  home_team_ttalk: Go Giants
+  away_team: falcons
+  away_team_ttalk: Falcons Rule, Giants Drool
+  order: 1
+  winning_team: giants
+  home_score: 20
+  away_score: 14
+apes_v_humans:
+  week: one
+  home_team: apes
+  home_team_ttalk: GOOOOO APES!
+  away_team: humans
+  away_team_ttalk: HUMANS RULES
+  order: 2
+  winning_team: humans
+  home_score: 2
+  away_score: 13
+apes_v_giants:
+  week: two
+  home_team: apes
+  home_team_ttalk: APES APES APES
+  away_team: giants
+  away_team_ttalk: GITANS!!!!!
+  order: 1
+  winning_team: apes
+  home_score: 10
+  away_score: 2
+falcons_v_humans:
+  week: two
+  home_team: falcons
+  home_team_ttalk: Faccllsons!!!
+  away_team: humans
+  away_team_ttalk: HUUUMANS EAT FALCONS
+  order: 2
+  winning_team: falcons
+  home_score: 13
+  away_score: 4
