@@ -53,6 +53,32 @@
   </table>
 <% end %>
 
+<h2>Contestant Picks</h2>
+<table class="table">
+    <tbody>
+      <% Contestant.all.each do |contestant| %>
+        <tr>
+          <td><strong><%= contestant.email %> - <%= contestant.display_name %></strong></td>
+        </tr>
+        <% contestant.votes.each do |vote| %>
+          <tr>
+            <td><%= vote.team.name %></td>
+          </tr>
+        <% end %>
+
+        <tr>
+          <td>Home Score</td>
+          <td><%= @week.tiebreaker_game.home_score %></td>
+        </tr>
+        <tr>
+          <td>Away Score</td>
+          <td><%= @week.tiebreaker_game.away_score %></td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+
 <nav>
   <ul>
     <li><%= link_to 'New Game', new_admin_week_game_path(@week) %></li>
