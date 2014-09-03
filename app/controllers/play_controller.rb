@@ -24,8 +24,8 @@ class PlayController < ApplicationController
   def set_week
     @week = Week.current_or_number(params[:week])
     @current_week = Week.current_or_number(nil)
-    @tiebreaker = current_contestant.tiebreakers.where(:game => @week.tiebreaker_game).first_or_initialize
-    redirect_to(root_path, notice: "Couldn't find any weeks!") if @week.nil?
+    @tiebreaker = current_contestant.tiebreakers.where(:game => @current_week.tiebreaker_game).first_or_initialize
+    redirect_to(root_path, notice: "Couldn't find any weeks!") if @current_week.nil?
   end
 
   def tiebreaker_params
