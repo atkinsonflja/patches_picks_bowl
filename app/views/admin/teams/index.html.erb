@@ -14,7 +14,7 @@
   </thead>
 
   <tbody>
-    <% @teams.each do |team| %>
+    <% @teams.order(:name => :asc).each do |team| %>
       <tr>
         <td><%= link_to team.name, edit_admin_team_path(team) %></td>
       </tr>
