@@ -60,6 +60,9 @@
         <tr>
           <td><strong><%= contestant.email %> - <%= contestant.display_name %></strong></td>
         </tr>
+        <tr>
+          <td><h4 style="font-size: 13px;">Week <%= @week.number %></h4></td>
+        </tr>
         <% contestant.votes.each do |vote| %>
           <tr>
             <td><%= vote.team.name %></td>
