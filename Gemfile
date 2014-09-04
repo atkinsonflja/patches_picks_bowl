@@ -13,6 +13,8 @@ end
 group :development, :test do
   gem 'sqlite3'
 end
+# Add Paginate
+gem 'will_paginate', '~> 3.0.7'
 # Add Devise
 gem 'devise'
 # Use SCSS for stylesheets

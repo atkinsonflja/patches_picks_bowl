@@ -1,5 +1,6 @@
 <nav>
   <ul>
+    <li><%= link_to 'Back', admin_path %></li>
     <li><%= link_to 'New Team', new_admin_team_path %></li>
   </ul>
 </nav>
@@ -14,7 +15,8 @@
   </thead>
 
   <tbody>
-    <% @teams.order(:name => :asc).each do |team| %>
+    <%= will_paginate @teams %>
+    <% @teams.each do |team| %>
       <tr>
         <td><%= link_to team.name, edit_admin_team_path(team) %></td>
       </tr>
