@@ -3,7 +3,7 @@ class Admin::TeamsController < AdminController
 
   # GET /admin/teams
   def index
-    @teams = Team.paginate(:page => params[:page], :per_page => 30).order(:name => :asc)
+    @teams = Team.paginate(:page => params[:page], :per_page => 15).order(:name => :asc)
   end
 
   # GET /admin/teams/1
