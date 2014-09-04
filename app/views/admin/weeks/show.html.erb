@@ -49,13 +49,14 @@
           <td><%= vote.team.name %></td>
         </tr>
       <% end %>
+      <% winningscore = @week.winning_contestant.tiebreakers.where(:game => @week.tiebreaker_game).first %>
       <tr>
         <td>Home Score</td>
-        <td><% winningscore = @week.winning_contestant.tiebreakers.where(:game => @week.tiebreaker_game).first %><%= winningscore.home_score %></td>
+        <td><%= winningscore.home_score %></td>
       </tr>
       <tr>
         <td>Away Score</td>
-        <td><% winningscore = @week.winning_contestant.tiebreakers.where(:game => @week.tiebreaker_game).first %><%= winningscore.away_score %></td>
+        <td><%= winningscore.away_score %></td>
       </tr>
     </tbody>
   </table>
