@@ -46,12 +46,18 @@
             <% if !vote && tbvote %>
               <%= "N/A" %>
             <% end %>
+            <% if !vote && !tbvote %>
+              <%= "N/A" %>
+            <% end %>
           </td>
           <td>
             <% if !vote && tbvote %>
               <%= tbvote.home_score %>
               -
               <%= tbvote.away_score %>
+            <% end %>
+            <% if !vote && !tbvote %>
+              <%= "N/A" %>
             <% end %>
           </td>
         </tr>
