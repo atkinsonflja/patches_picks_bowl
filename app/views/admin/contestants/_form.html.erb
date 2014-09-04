@@ -12,6 +12,7 @@
   <% end %>
 
   <div class="field">
+    <br />
     <%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>
@@ -56,7 +57,7 @@
               -
               <%= tbvote.away_score %>
             <% end %>
-            <% if !vote && !tbvote %>
+            <% if vote && !tbvote %>
               <%= "N/A" %>
             <% end %>
           </td>
