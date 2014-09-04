@@ -57,6 +57,11 @@ body {
 			    }
 			}
 		}
+
+		li.active {
+			border-left: 1px #FFFFFF solid;
+			border-right: 1px #FFFFFF solid;
+		}
 	}
   }
 }
