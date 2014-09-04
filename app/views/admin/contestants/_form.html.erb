@@ -45,10 +45,10 @@
               <em><%= vote.team.name %></em>
             <% end %>
             <% if !vote && tbvote %>
-              <%= "N/A" %>
+              <em><%= "N/A" %></em>
             <% end %>
             <% if !vote && !tbvote %>
-              <%= "N/A" %>
+              <em><%= "N/A" %></em>
             <% end %>
           </td>
           <td>
@@ -57,9 +57,9 @@
               -
               <%= tbvote.away_score %></em>
             <% elsif vote %>
-              <%= "N/A" %>
+              <em><%= "N/A" %></em>
             <% else %>
-              <%= "N/A" %>
+              <em><%= "N/A" %></em>
             <% end %>
           </td>
         </tr>
