@@ -56,8 +56,7 @@
               <%= tbvote.home_score %>
               -
               <%= tbvote.away_score %>
-            <% end %>
-            <% if vote && !tbvote %>
+            <% elsif vote %>
               <%= "N/A" %>
             <% end %>
           </td>
