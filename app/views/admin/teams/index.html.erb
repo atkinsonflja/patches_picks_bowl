@@ -15,12 +15,17 @@
   </thead>
 
   <tbody>
-    <%= will_paginate @teams %>
-      <% @teams.each do |team| %>
-        <tr>
-          <td><%= link_to team.name, edit_admin_team_path(team) %></td>
-        </tr>
-      <% end %>
+    <div class="digg_pagination">
+      <div class="page_info">
+        <%= page_entries_info @posts %>
+      </div>
+      <%= will_paginate @teams, :container => false %>
+    </div>
+        <% @teams.each do |team| %>
+          <tr>
+            <td><%= link_to team.name, edit_admin_team_path(team) %></td>
+          </tr>
+        <% end %>
   </tbody>
 </table>
 

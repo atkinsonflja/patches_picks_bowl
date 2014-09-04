@@ -16,7 +16,12 @@
   </thead>
 
   <tbody>
-    <%= will_paginate @contestants %>
+    <div class="digg_pagination">
+      <div class="page_info">
+        <%= page_entries_info @posts %>
+      </div>
+      <%= will_paginate @contestants %>
+    </div>
       <% @contestants.each do |contestant| %>
         <tr>
           <td><%= link_to contestant.display_name, admin_contestant_path(contestant) %></td>
