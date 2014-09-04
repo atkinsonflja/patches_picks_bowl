@@ -45,6 +45,6 @@ class Admin::ContestantsController < AdminController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_admin_week
-      @week = Week.find(params[:id])
+      @week = Week.current_or_number(nil)
     end
 end
