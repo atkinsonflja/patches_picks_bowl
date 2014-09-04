@@ -4,7 +4,7 @@ class Admin::ContestantsController < AdminController
 
   # GET /admin/contestants
   def index
-    @contestants = Contestant.all
+    @contestants = Contestant.paginate(:page => params[:page], :per_page => 15).order(:name => :asc)
   end
 
   # GET /admin/contestants/1
