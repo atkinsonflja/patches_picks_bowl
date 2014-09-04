@@ -42,7 +42,7 @@
           <td><%= game.away_team.name %></td>
           <td>
             <% if vote %>
-              <%= vote.team.name %>
+              <em><%= vote.team.name %></em>
             <% end %>
             <% if !vote && tbvote %>
               <%= "N/A" %>
@@ -53,9 +53,9 @@
           </td>
           <td>
             <% if !vote && tbvote %>
-              <%= tbvote.home_score %>
+              <em><%= tbvote.home_score %>
               -
-              <%= tbvote.away_score %>
+              <%= tbvote.away_score %></em>
             <% elsif vote %>
               <%= "N/A" %>
             <% else %>
