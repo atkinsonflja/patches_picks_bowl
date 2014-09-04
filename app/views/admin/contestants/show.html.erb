@@ -1,0 +1,10 @@
+<nav>
+  <ul>
+  	<li><%= link_to 'Back', admin_contestants_path %></li>
+    <li><%= link_to 'Destroy', [:admin, @contestant], method: :delete, data: { confirm: 'Are you sure?' } %></li>
+  </ul>
+</nav>
+
+<h1>Showing "<%= @contestant.display_name %>"</h1>
+
+<%= render 'form' %>

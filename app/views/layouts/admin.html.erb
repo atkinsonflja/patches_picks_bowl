@@ -19,9 +19,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="brand" href="/admin">Patchs Picks Bowl</a>
+        <a class="brandadmin" href="/">Patchs Picks Bowl</a>
+        <a class="brand" href="/admin" style="font-size: 18px;">[Admin Dashboard]</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
+            <li class="<%= "active" if controller_name =~ /contestants/ %>">
+              <%= link_to "Contestants", admin_contestants_path %>
+            </li>
             <li class="<%= "active" if controller_name =~ /teams/ %>">
               <%= link_to "Teams", admin_teams_path %>
             </li>

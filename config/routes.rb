@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/', to: 'home#index'
+    resources :contestants
     resources :teams
     resources :weeks do
       resources :games

@@ -1,0 +1,27 @@
+<nav>
+  <ul>
+    <li><%= link_to 'New Contestant', new_admin_contestant_path %></li>
+  </ul>
+</nav>
+
+<h1>Contestants</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contestants.each do |contestant| %>
+      <tr>
+        <td><%= link_to contestant.display_name, admin_contestant_path(contestant) %></td>
+        <td><%= link_to contestant.email, admin_contestant_path(contestant) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

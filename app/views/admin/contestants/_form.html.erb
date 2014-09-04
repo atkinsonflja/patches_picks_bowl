@@ -1,0 +1,47 @@
+<%= form_for([:admin, @contestant]) do |f| %>
+  <% if @contestant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@contestant.errors.count, "error") %> prohibited this contestant from being saved:</h2>
+
+      <ul>
+      <% @contestant.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <hr />
+
+  <h1>Picks</h1>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Home Team</th>
+        <th></th>
+        <th>Away Team</th>
+        <th>Pick</th>
+        <th>Tiebreaker Vote</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @week.games.each do |game| %>
+        <% @contestant.votes.each do |vote| %>
+          <tr>
+            <td><%= game.home_team.name %></td>
+            <td>vs.</td>
+            <td><%= game.away_team.name %></td>
+            <td><%= vote.team.name %></td>
+            <td><%= @week.number if @week.tiebreaker_game == game %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

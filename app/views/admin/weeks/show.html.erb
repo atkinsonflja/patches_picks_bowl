@@ -1,3 +1,11 @@
+<nav>
+  <ul>
+    <li><%= link_to 'Back', admin_weeks_path %></li>
+    <li><%= link_to 'New Game', new_admin_week_game_path(@week) %></li>
+    <li><%= link_to 'Edit Week', edit_admin_week_path(@week) %></li>
+  </ul>
+</nav>
+
 <h1>Week <%= @week.number %></h1>
 
 <table class="table">
@@ -52,31 +60,3 @@
     </tbody>
   </table>
 <% end %>
-
-<h2>Contestant Picks</h2>
-<table class="table">
-    <tbody>
-      <% Contestant.all.each do |contestant| %>
-        <tr>
-          <td><strong><%= contestant.email %> - <%= contestant.display_name %></strong></td>
-        </tr>
-        <tr>
-          <td><h4 style="font-size: 13px;">Week <%= @week.number %></h4></td>
-        </tr>
-        <% contestant.votes.each do |vote| %>
-          <tr>
-            <td><%= vote.team.name %></td>
-          </tr>
-        <% end %>
-      <% end %>
-    </tbody>
-
-  </table>
-
-<nav>
-  <ul>
-    <li><%= link_to 'New Game', new_admin_week_game_path(@week) %></li>
-    <li><%= link_to 'Edit Week', edit_admin_week_path(@week) %></li>
-    <li><%= link_to 'Back', admin_weeks_path %></li>
-  </ul>
-</nav>

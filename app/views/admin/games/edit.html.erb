@@ -1,10 +1,10 @@
+<nav>
+  <ul>
+  	<li><%= link_to 'Back', admin_week_path(@week) %></li>
+    <li><%= link_to 'Destroy', [:admin, @week, @game], method: :delete, data: { confirm: 'Are you sure?' } %></li>
+  </ul>
+</nav>
+
 <h1>Editing Game for Week <%= @week.number %></h1>
 
 <%= render 'form' %>
-
-<nav>
-  <ul>
-    <li><%= link_to 'Destroy', [:admin, @week, @game], method: :delete, data: { confirm: 'Are you sure?' } %></li>
-    <li><%= link_to 'Back', admin_week_path(@week) %></li>
-  </ul>
-</nav>
