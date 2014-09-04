@@ -15,7 +15,7 @@
   </thead>
 
   <tbody>
-    <% @contestants.each do |contestant| %>
+    <% @contestants.order(:email => :asc).each do |contestant| %>
       <tr>
         <td><%= link_to contestant.display_name, admin_contestant_path(contestant) %></td>
         <td><%= link_to contestant.email, admin_contestant_path(contestant) %></td>
