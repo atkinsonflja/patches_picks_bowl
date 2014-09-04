@@ -30,4 +30,20 @@
       margin-left: 20px;
     }
   }
+
+  a {
+    -webkit-transition: all 500ms ease-in-out !important;
+    -moz-transition: all 500ms ease-in-out !important;
+    -o-transition: all 500ms ease-in-out !important;
+    -ms-transition: all 500ms ease-in-out !important;
+    transition: all 500ms ease-in-out !important;
+
+    &:hover {
+      -webkit-transition: all 500ms ease-in-out !important;
+      -moz-transition: all 500ms ease-in-out !important;
+      -o-transition: all 500ms ease-in-out !important;
+      -ms-transition: all 500ms ease-in-out !important;
+      transition: all 500ms ease-in-out !important;
+    }
+  }
 }
