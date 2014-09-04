@@ -19,29 +19,34 @@
 
   <h1>Picks</h1>
   
+<% Week.order(:number => :asc).each do |week| %>
   <table class="table">
+    <h3>Week <%= week.number %> Votes</h3>
     <thead>
       <tr>
         <th>Home Team</th>
         <th></th>
         <th>Away Team</th>
         <th>Pick</th>
-        <th>Tiebreaker Vote</th>
+        <th></th>
       </tr>
     </thead>
-
     <tbody>
-      <% @week.games.each do |game| %>
-        <% @contestant.votes.each do |vote| %>
-          <tr>
-            <td><%= game.home_team.name %></td>
-            <td>vs.</td>
-            <td><%= game.away_team.name %></td>
-            <td><%= vote.team.name %></td>
-            <td><%= @week.number if @week.tiebreaker_game == game %></td>
-          </tr>
-        <% end %>
+      <% week.games.order(:order => :asc).each do |game| %>
+        
+        <tr>
+          <td><%= game.home_team.name %></td>
+          <td>vs.</td>
+          <td><%= game.away_team.name %></td>
+          <td>
+            <% vote = @contestant.votes.where(:game => game).first %>
+            <% if vote %>
+              <%= vote.team.name %>
+            <% end %>
+          </td>
+        </tr>
       <% end %>
     </tbody>
   </table>
+<% end %>
 <% end %>
