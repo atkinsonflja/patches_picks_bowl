@@ -12,6 +12,7 @@
     <tr>
       <th>Name</th>
       <th>Email</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -26,6 +27,7 @@
         <tr>
           <td><%= link_to contestant.display_name, admin_contestant_path(contestant) %></td>
           <td><%= link_to contestant.email, admin_contestant_path(contestant) %></td>
+          <td><%= link_to "View Votes", admin_contestant_path(contestant), class: "view" %></td>
         </tr>
       <% end %>
   </tbody>

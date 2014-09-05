@@ -64,8 +64,8 @@ body {
 				transition: all 500ms ease-in-out !important;
 
 				&:hover {
-			      color: #FFFFFF;
-			      text-decoration: none;
+			    	color: #FFFFFF;
+			    	text-decoration: none;
 			    }
 			}
 		}
@@ -76,4 +76,31 @@ body {
 		}
 	}
   }
+	.view {
+  		  padding: 5px 15px !important;
+		  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+		  color: #999999;
+		  cursor: pointer;
+		  display: inline-block;
+		  font-weight: 700;
+		  line-height: 20px;
+		  margin: 0;
+		  text-decoration: none;
+		  vertical-align: middle;
+		  white-space: nowrap;
+		  background: -moz-linear-gradient( top, #1b1b1b 0%, #1b1b1b 50%, #000000 50%, #1b1b1b) !important;
+		  background: -webkit-gradient( linear, left top, left bottom, from(#1b1b1b), color-stop(0.55, #1b1b1b), color-stop(0.55, #000000), to(#1b1b1b)) !important;
+		  text-shadow: none;
+		  font-size: 15px;
+		  -webkit-transition: all 500ms ease-in-out !important;
+		  -moz-transition: all 500ms ease-in-out !important;
+		  -o-transition: all 500ms ease-in-out !important;
+		  -ms-transition: all 500ms ease-in-out !important;
+		  transition: all 500ms ease-in-out !important;
+
+		  &:hover {
+			  color: #FFFFFF;
+			  text-decoration: none;
+		  }
+	}
 }
