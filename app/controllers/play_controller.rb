@@ -1,11 +1,20 @@
 class PlayController < ApplicationController
   before_action :authenticate_contestant!
   before_action :set_week, only: [:index, :vote]
+  before_action :statusoff
 
   # GET /play
   def index
     @votes = current_contestant.votes_for(@week)
   end
+
+  # Shut off current week
+  #def statusoff
+  #  date = Date.today
+  #  if date == Date.today
+  #    @week.status = 0
+  #  end
+  #end
 
   # POST /play/vote
   def vote

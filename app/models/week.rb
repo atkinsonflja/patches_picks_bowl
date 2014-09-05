@@ -10,6 +10,12 @@ class Week < ActiveRecord::Base
 
   after_touch :set_tiebreaker_game
 
+  def self.statusoff(date)
+    if date == "2014-09-05"
+      @current_week.status = 0
+    end
+  end
+
   def regular_games
     games.where.not(:id => tiebreaker_game_id)
   end

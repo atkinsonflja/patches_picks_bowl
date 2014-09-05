@@ -35,6 +35,7 @@
     </thead>
     <tbody>
       <% week.games.order(:order => :asc).each do |game| %>
+        <% winningteam = game.winning_team %>
         <% vote = @contestant.votes.where(:game => game).first %>
         <% tbvote = @contestant.tiebreakers.where(:game => week.tiebreaker_game).first %>
         <tr>
@@ -43,7 +44,14 @@
           <td class="tdwidth"><%= game.away_team.name %></td>
           <td class="tdwidth">
             <% if vote %>
-              <em><%= vote.team.name %></em>
+              <em>
+                <%= vote.team.name %>
+                <% if vote.team == winningteam %>
+                  <span class='win'>√</span>
+                <% else %>
+                  <span class='loss'>X</span>
+                <% end %>
+              </em>
             <% end %>
             <% if !vote && tbvote %>
               <em><%= "N/A" %></em>
