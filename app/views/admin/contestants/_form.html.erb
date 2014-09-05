@@ -13,7 +13,9 @@
 
   <div class="field">
     <br />
-    <%= @contestant.email %>
+    Email: <em><%= @contestant.email %></em>
+    <br />
+    Vote Count: <em style="text-decoration: underline;"><%= @contestant.votes.count + @contestant.tiebreakers.count %></em>
   </div>
   <hr />
 
