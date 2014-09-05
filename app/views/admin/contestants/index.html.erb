@@ -25,9 +25,9 @@
     </div>
       <% @contestants.each do |contestant| %>
         <tr>
-          <td><%= link_to contestant.display_name, admin_contestant_path(contestant) %></td>
-          <td><%= link_to contestant.email, admin_contestant_path(contestant) %></td>
-          <td><%= link_to "View Votes", admin_contestant_path(contestant), class: "view" %></td>
+          <td class="tdwidth"><%= link_to contestant.display_name, admin_contestant_path(contestant) %></td>
+          <td class="tdwidth"><%= link_to contestant.email, admin_contestant_path(contestant) %></td>
+          <td class="tdwidth"><%= link_to "View Votes", admin_contestant_path(contestant), class: "view" %></td>
         </tr>
       <% end %>
   </tbody>
