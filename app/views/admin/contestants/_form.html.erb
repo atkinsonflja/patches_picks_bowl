@@ -36,10 +36,10 @@
         <% vote = @contestant.votes.where(:game => game).first %>
         <% tbvote = @contestant.tiebreakers.where(:game => week.tiebreaker_game).first %>
         <tr>
-          <td><%= game.home_team.name %></td>
-          <td>vs.</td>
-          <td><%= game.away_team.name %></td>
-          <td>
+          <td class="tdwidth"><%= game.home_team.name %></td>
+          <td class="tdwidth">vs.</td>
+          <td class="tdwidth"><%= game.away_team.name %></td>
+          <td class="tdwidth">
             <% if vote %>
               <em><%= vote.team.name %></em>
             <% end %>
@@ -50,7 +50,7 @@
               <em><%= "N/A" %></em>
             <% end %>
           </td>
-          <td>
+          <td class="tdwidth">
             <% if !vote && tbvote %>
               <em><%= tbvote.home_score %>
               -
