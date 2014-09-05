@@ -20,7 +20,7 @@
     <%= f.select :home_team_id, Team.all.collect { |t| [ t.name, t.id ] } %>
   </div>
   <div class="field">
-    <%= f.label :home_team_ttalk %><br>
+    <p>Trash Talk - <strong>Home</strong><p><br>
     <%= f.text_field :home_team_ttalk %>
   </div>
   <div class="field">
@@ -28,12 +28,17 @@
     <%= f.select :away_team_id, Team.all.collect { |t| [ t.name, t.id ] } %>
   </div>
   <div class="field">
-    <%= f.label :away_team_ttalk %><br>
+    <p>Trash Talk - <strong>Away</strong><p><br>
     <%= f.text_field :away_team_ttalk %>
   </div>
   <div class="field">
     <%= f.label :order %><br>
-    <%= f.number_field :order %>
+    <% defaultorder = Game.all.last.order + 1 %>
+    <% if !@game.order %>
+      <%= f.number_field :order, in: 1...1000, :required => true, :value => defaultorder %>
+    <% else %>
+      <%= f.number_field :order, in: 1...1000, :required => true %>
+    <% end %>
   </div>
   <div class="field">
     <%= f.label :winning_team_id %><br>
