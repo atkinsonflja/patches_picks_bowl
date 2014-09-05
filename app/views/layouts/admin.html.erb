@@ -20,9 +20,11 @@
           <span class="icon-bar"></span>
         </button>
         <a class="brandadmin" href="/"><span style="font-size: 13px;">Home</span> - Patchs Picks Bowl</a>
-        <a class="brand" href="/admin" style="font-size: 18px;">[Admin Dashboard]</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
+            <li class="<%= "active" if current_page?(admin_path) %>">
+              <%= link_to "[Admin Dashboard]", admin_path, class: "brand", style: "font-size: 18px" %>
+            </li>
             <li class="<%= "active" if controller_name =~ /contestants/ %>">
               <%= link_to "Contestants", admin_contestants_path %>
             </li>
