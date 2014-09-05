@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :week_id %><br>
-    <%= f.select :week_id, Week.all.collect { |w| [ "Week #{w.number}", w.id ] }, :selected => @week.number %>
+    <%= f.select :week_id, Week.all.collect { |w| [ "Week #{w.number}", w.id ] }, :selected => @week.id %>
   </div>
   <div class="field">
     <%= f.label :home_team_id %><br>

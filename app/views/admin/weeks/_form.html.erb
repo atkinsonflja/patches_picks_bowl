@@ -24,7 +24,7 @@
   <div class="field">
     <br><%= f.label :previous_week_id %><br>
     <% defaultweek = defaultweek - 1 %>
-    <%= f.select :previous_week_id, Week.all.collect { |w| [ "Week #{w.number}", w.id ] }, { include_blank: true }, :selected => Week.all.where(:number => defaultweek) %>
+    <%= f.select :previous_week_id, Week.all.collect { |w| [ "Week #{w.number}", w.id ] }, { include_blank: true }, :selected => Week.all.where(:week_id => defaultweek) %>
   </div>
   <div class="field">
     <%= f.label :next_week_id %><br>
