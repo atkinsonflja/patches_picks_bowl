@@ -20,7 +20,7 @@
   </thead>
 
   <tbody>
-    <% @week.games.each do |game| %>
+    <% @week.games.order(:order => :asc).each do |game| %>
       <tr>
         <td><%= game.home_team.name %></td>
         <td>vs.</td>
