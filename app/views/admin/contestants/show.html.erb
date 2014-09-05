@@ -1,7 +1,7 @@
 <nav>
   <ul>
   	<li><%= link_to 'Back', admin_contestants_path %></li>
-    <li><%= link_to 'Destroy', [:admin, @contestant], method: :delete, data: { confirm: 'Are you sure?' } %></li>
+    <li class="destroy"><%= link_to 'Destroy Contestant', [:admin, @contestant], method: :delete, data: { confirm: 'Are you sure?' } %></li>
   </ul>
 </nav>
 
