@@ -19,7 +19,7 @@
     <% if @week.number < @current_week.number %>
       <ul><li style="list-style: none;">Voting for Week <%= @week.number %> has ended</li></ul>
     <% end %>
-    <% if @week.number > @current_week.number || @current_week.number == 3 %>
+    <% if @week.number >= @current_week.number %>
       <ul><li style="list-style: none;">Voting for Week <%= @week.number %> will begin shortly</li></ul>
     <% end %>
     <div style="margin: 0 auto; display: block; text-align: center;">
