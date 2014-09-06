@@ -13,8 +13,8 @@
 
   <div class="field">
     <%= f.label :number %><br>
-    <% defaultweek = Week.all.last.number + 1 %>
-    <%= f.number_field :number, :value => defaultweek %>
+    <% defaultweek = Week.order(:number => :desc).first.number %>
+    <%= f.number_field :number, :value => defaultweek + 1 %>
   </div>
   <div class="field">
     <p>Set <strong>CURRENT</strong> Week? ( <em><strong>WARNING</strong>: <span style="color: red;">Only <span style="text-decoration: underline; font-weight: bold; text-transform: uppercase;">one</span> current week at a time!</span></em> )</p>
@@ -23,13 +23,12 @@
   </div>
   <div class="field">
     <br><%= f.label :previous_week_id %><br>
-    <% defaultweek = defaultweek - 1 %>
-    <%= f.select :previous_week_id, Week.all.collect { |w| [ "Week #{w.number}", w.id ] }, { include_blank: true }, :selected => Week.all.where(:week_id => defaultweek) %>
+    <%= f.select :previous_week_id, Week.all.collect { |w| [ "Week #{w.number}", w.id ] }, { include_blank: true }, :selected => Week.where(:number => defaultweek).first.id %>
   </div>
   <div class="field">
     <%= f.label :next_week_id %><br>
     <% defaultweek = defaultweek + 2 %>
-    <%= f.select :next_week_id, Week.all.collect { |w| [ "Week #{w.number}", w.id ] }, { include_blank: true }, :selected => defaultweek %>
+    <%= f.select :next_week_id, Week.all.collect { |w| [ "Week #{w.number}", w.id ] }, { include_blank: true } %>
   </div>
   <div class="field">
     <%= f.label :winning_contestant_id %><br>
