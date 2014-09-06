@@ -48,7 +48,7 @@
                 <%= vote.team.name %>
                 <% if vote.team == winningteam %>
                   <span class='win'>√</span>
-                <% elsif vote.team != winningteam && winningteam == "" %>
+                <% elsif vote.team != winningteam && !winningteam.empty? %>
                   <span class='loss'>X</span>
                 <% end %>
               </em>
