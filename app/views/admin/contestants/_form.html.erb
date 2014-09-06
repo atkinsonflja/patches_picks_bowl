@@ -50,6 +50,8 @@
                   <span class='win'>√</span>
                 <% elsif vote.team != winningteam && winningteam %>
                   <span class='loss'>X</span>
+                <% else %>
+                  <em><%= "N/A" %></em>
                 <% end %>
               </em>
             <% end %>
