@@ -19,7 +19,7 @@
     <% if @week.number < @current_week.number %>
       <ul><li style="list-style: none;">Voting for Week <%= @week.number %> has ended</li></ul>
     <% end %>
-    <% if @week.number > @current_week.number %>
+    <% if @week.number > @current_week.number || @current_week.number == 3 %>
       <ul><li style="list-style: none;">Voting for Week <%= @week.number %> will begin shortly</li></ul>
     <% end %>
     <div style="margin: 0 auto; display: block; text-align: center;">
@@ -36,12 +36,12 @@
                   <label for="<%= "games_#{game.id}_#{game.home_team_id}" %>"><%= game.home_team.name %></label>
                 </td>
                 <td class="home vote">
-                  <%= radio_button_tag "games[#{game.id}]", game.home_team_id, @votes[game.id] == game.home_team_id, data: { tt: game.home_team_ttalk, game: game.id }, :disabled => !@week.status %>
+                  <%= radio_button_tag "games[#{game.id}]", game.home_team_id, @votes[game.id] == game.home_team_id, data: { tt: game.home_team_ttalk, game: game.id }, :disabled => !@week.status || @current_week.number == 3 %>
                 </td>
                 <td>vs.</td>
                 <!-- Away Team -->
                 <td class="away vote">
-                  <%= radio_button_tag "games[#{game.id}]", game.away_team_id, @votes[game.id] == game.away_team_id, data: { tt: game.away_team_ttalk, game: game.id }, :disabled => !@week.status %>
+                  <%= radio_button_tag "games[#{game.id}]", game.away_team_id, @votes[game.id] == game.away_team_id, data: { tt: game.away_team_ttalk, game: game.id }, :disabled => !@week.status || @current_week.number == 3 %>
                 </td>
                 <td class="away name">
                   <label for="<%= "games_#{game.id}_#{game.away_team_id}" %>"><%= game.away_team.name %></label>
@@ -64,17 +64,18 @@
           <% if game = @week.tiebreaker_game %>
             <table id="tiebreaker">
               <tr>
-                <td class="in"><%= number_field_tag "tiebreaker[home_score]", @tiebreaker.home_score, in: 1...200, :required => true, :data => { game: game.id, score: 'home_score' }, :disabled => !@week.status %></td>
+                <td class="in"><%= number_field_tag "tiebreaker[home_score]", @tiebreaker.home_score, in: 1...200, :required => true, :data => { game: game.id, score: 'home_score' }, :disabled => !@week.status || @current_week.number == 3 %></td>
                 <td><label><%= game.home_team.name %></label></td>
               </tr>
               <tr>
-              <td class="in"><%= number_field_tag "tiebreaker[away_score]", @tiebreaker.away_score, in: 1...200, :required => true, :data => { game: game.id, score: 'away_score' }, :disabled => !@week.status %></td>
+              <td class="in"><%= number_field_tag "tiebreaker[away_score]", @tiebreaker.away_score, in: 1...200, :required => true, :data => { game: game.id, score: 'away_score' }, :disabled => !@week.status || @current_week.number == 3 %></td>
               <td><label><%= game.away_team.name %></label></td>
               </tr>
             </table>
           <% end %>
 
-          <% if @week.status %>
+          <% if @week.status && @current_week.number == 3 %>
+          <% elsif @week.status %>
             <div class="submit">
               <%= submit_tag "Submit"%>
             </div>
