@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get '/', to: 'home#index'
     get  '/contestants/sign_in',      to: 'devise/registrations#new', as: 'signin'
     resources :contestants
+    resources :duo_picks
     resources :teams
     resources :weeks do
       resources :games

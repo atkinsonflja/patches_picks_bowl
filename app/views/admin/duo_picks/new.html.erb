@@ -1,0 +1,30 @@
+<nav>
+  <ul>
+    <li><%= link_to 'Back', admin_duo_picks_path %></li>
+  </ul>
+</nav>
+
+<h1>New Picks</h1>
+
+<%= form_for([:admin, @duo_pick]) do |f| %>
+  <% if @duo_pick.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@duo_pick.errors.count, "error") %> prohibited this duo pick from being saved:</h2>
+
+      <ul>
+      <% @duo_pick.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :week_id %><br>
+    <%= f.select :week_id, Week.all.collect { |w| [ "Week #{w.number}", w.id ] } %>
+  </div>
+  <div class="actions">
+    <%= f.submit class: "view" %>
+  </div>
+<% end %>
+

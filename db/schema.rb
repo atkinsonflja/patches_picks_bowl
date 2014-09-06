@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140902031025) do
+ActiveRecord::Schema.define(version: 20140906041941) do
 
   create_table "contestants", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 20140902031025) do
 
   add_index "contestants", ["email"], name: "index_contestants_on_email", unique: true
   add_index "contestants", ["reset_password_token"], name: "index_contestants_on_reset_password_token", unique: true
+
+  create_table "duo_picks", force: true do |t|
+    t.integer  "week_id"
+    t.text     "picks"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "duo_picks", ["week_id"], name: "index_duo_picks_on_week_id"
 
   create_table "games", force: true do |t|
     t.integer  "week_id"

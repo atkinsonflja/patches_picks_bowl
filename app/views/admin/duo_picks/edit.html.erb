@@ -1,0 +1,68 @@
+<nav>
+  <ul>
+  	<li><%= link_to 'Back', admin_duo_picks_path %></li>
+    <li class="destroy"><%= link_to 'Destroy Picks', [:admin, @duo_pick], method: :delete, data: { confirm: 'Are you sure?' } %></li>
+  </ul>
+</nav>
+
+<h1>Editing Duo Pick (Week <%= @duo_pick.week.try(:number) %>)</h1>
+
+<%= form_for([:admin, @duo_pick]) do |f| %>
+  <% if @duo_pick.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@duo_pick.errors.count, "error") %> prohibited this duo pick from being saved:</h2>
+
+      <ul>
+      <% @duo_pick.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table class="duo_picks games table">
+    <tbody>
+    <% if !@duo_pick.week.regular_games.blank? %>
+      <% for game in @duo_pick.week.regular_games %>
+        <tr>
+          <!-- Home Team -->
+          <td class="home name">
+            <label for="<%= "duo_pick_picks_#{game.id}_#{game.home_team_id}" %>"><%= game.home_team.name %></label>
+          </td>
+          <td class="home vote">
+            <%= radio_button_tag "duo_pick[picks][#{game.id}]", game.home_team_id, @duo_pick.picks[game.id.to_s].to_i == game.home_team_id %>
+          </td>
+          <td class="vs">vs.</td>
+          <!-- Away Team -->
+          <td class="away vote">
+            <%= radio_button_tag "duo_pick[picks][#{game.id}]", game.away_team_id, @duo_pick.picks[game.id.to_s].to_i == game.away_team_id %>
+          </td>
+          <td class="away name">
+            <label for="<%= "duo_pick_picks_#{game.id}_#{game.away_team_id}" %>"><%= game.away_team.name %></label>
+          </td>
+        </tr>
+      <% end %>
+      <% if game = @duo_pick.week.tiebreaker_game %>
+        <tr>
+          <!-- Home Team -->
+          <td class="home name"><label><%= game.home_team.name %></label></td>
+          <td class="home vote"><%= number_field_tag "duo_pick[picks][#{game.id}][home_score]", @duo_pick.picks[game.id.to_s].try(:[], 'home_score'), in: 1...200 %></td>
+          <td class="vs">vs.</td>
+          <!-- Away Team -->
+          <td  class="away vote"><%= number_field_tag "duo_pick[picks][#{game.id}][away_score]", @duo_pick.picks[game.id.to_s].try(:[], 'away_score'), in: 1...200 %></td>
+          <td class="away name"><label><%= game.away_team.name %></label></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td>No games for Week <%= @duo_pick.week.number %> yet.</td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <div class="actions">
+    <%= f.submit class: "view" %>
+  </div>
+<% end %>
+

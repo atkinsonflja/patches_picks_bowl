@@ -1,0 +1,24 @@
+<nav>
+  <ul>
+    <li><%= link_to 'Back', admin_path %></li>
+    <li><%= link_to 'New Duo Pick Week', new_admin_duo_pick_path %></li>
+  </ul>
+</nav>
+
+<h1>Duo Picks</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Week</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @duo_picks.each do |duo_pick| %>
+      <tr>
+        <td><%= link_to "Week #{duo_pick.week.number}", [:admin, duo_pick] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
