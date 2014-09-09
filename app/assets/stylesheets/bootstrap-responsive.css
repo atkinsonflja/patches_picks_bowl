@@ -799,6 +799,12 @@
   }
 }
 
+@media (max-width: 1000px) {
+  #voting #pp_toggle {
+    top: -512px !important;
+  }
+}
+
 @media (max-width: 767px) {
   .container-fluid {
     padding: 0;
