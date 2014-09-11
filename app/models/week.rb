@@ -83,4 +83,21 @@ class Week < ActiveRecord::Base
 
     update_attribute(:winning_contestant, winners.sample)
   end
+
+  def compute_score
+    correct_votes = 0
+    total_votes = 0
+    
+    games.all.each do |game|
+      vote = contestant.votes.where(game: game).first
+      if vote && vote.team == game.winning_team
+        correct_votes += 1
+      end
+      total_votes += 1
+    end
+
+    accuracy = correct_votes / total_votes.to_f
+    update_attribute(:score, accuracy)
+  end
+
 end

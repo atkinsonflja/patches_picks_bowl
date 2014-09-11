@@ -69,7 +69,7 @@
 			<ul>
 				<marquee id="topp">
 				  <% c_count = 0 %>
-				    <% for contestant in Contestant.top_voters %>
+				    <% for contestant in Contestant.top_scorers %>
 				  	  <% c_count += 1 %>
 					    <li><%= c_count %>. <%= contestant.display_name %></li>
 				    <% end %>

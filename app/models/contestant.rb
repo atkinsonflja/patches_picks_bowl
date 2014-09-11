@@ -24,6 +24,16 @@ class Contestant < ActiveRecord::Base
     order(:votes_count => :desc).limit(max)
   end
 
+  def self.top_scorers(max = 20)
+    order(:score => :desc).limit(max)
+  end
+
+  def solve_top_scorers!
+    Contestant.all.each do |contestant|
+      contestant.compute_score
+    end
+  end
+
   # TODO: Add name fields to the sign up form and use that here instead of the email address
   def display_name
     email.split("@").first.titleize # temp, instead of First Name, Last initial
