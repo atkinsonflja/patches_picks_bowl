@@ -29,8 +29,20 @@ class Contestant < ActiveRecord::Base
   end
 
   def solve_top_scorers!
+    correct_votes = 0
+    total_votes = 0
+
     Contestant.all.each do |contestant|
-      contestant.compute_score!
+      Game.all.each do |game|
+        vote = contestant.votes.where(game: game).first
+        if vote && vote.team == game.winning_team
+          correct_votes += 1
+        end
+        total_votes += 1
+      end
+
+      accuracy = correct_votes / total_votes.to_f
+      update_attribute(:score, accuracy)
     end
   end
 
