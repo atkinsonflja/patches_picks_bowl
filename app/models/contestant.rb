@@ -30,7 +30,7 @@ class Contestant < ActiveRecord::Base
 
   def solve_top_scorers!
     Contestant.all.each do |contestant|
-      contestant.compute_score
+      contestant.compute_score!
     end
   end
 
